@@ -304,7 +304,7 @@
       width: 22px; height: 22px; border-radius: 50%;
       background: var(--accent-light); border: 1px solid #86efac;
       display: flex; align-items: center; justify-content: center;
-      font-size: .75rem; color: var(--accent); flex-shrink: 0; margin-top: .15rem;
+      font-size: .75rem; color: var(--accent); flex-shrink: 0; margin-top: .85rem;
     }
     .promise-item p { font-size: .93rem; color: var(--muted); }
     form { display: flex; flex-direction: column; gap: 1.1rem; }
@@ -367,7 +367,7 @@
     <a href="what-is-tou.html">What Is TOU?</a>
     <a href="about-the-service.html">The Service</a>
     <a href="#pricing">Pricing</a>
-    <a href="#contact">Get Started</a>
+    <a href="#contact">Ask a Question</a>
     <a href="https://buy.stripe.com/bJe00kcYf9eH4Oc2dubEA00" class="nav-cta" target="_blank">Get My Analysis</a>
   </div>
 </nav>
@@ -617,36 +617,40 @@
   <div class="container">
     <div class="contact-wrap">
       <div class="contact-info reveal">
-        <div class="section-label">Get Started</div>
-        <h2>Request Your<br>Rate Analysis</h2>
-        <p>Send me your information and I'll follow up within <strong>one business day</strong> to walk you through pulling your interval data and getting your review done.</p>
-        <div class="contact-promise">
+        <div class="section-label">Have Questions?</div>
+        <h2>Ask Before<br>You Commit</h2>
+        <p>If you're ready to get your analysis, <a href="https://buy.stripe.com/bJe00kcYf9eH4Oc2dubEA00" target="_blank" style="color:var(--accent3); font-weight:600;">head straight to the sign-up page →</a> — it takes about two minutes.</p>
+        <p style="margin-top:.8rem;">If you have questions first, I'm happy to answer them. Use the form and I'll get back to you personally, usually within one business day.</p>
+        <div class="contact-promise" style="margin-top:2rem;">
           <div class="promise-item">
             <div class="promise-check">✓</div>
-            <p><strong style="color:var(--text);">I'll respond within 1 business day</strong>, guaranteed.</p>
+            <p>Not sure if TOU is right for your household? Ask me.</p>
           </div>
           <div class="promise-item">
             <div class="promise-check">✓</div>
-            <p>$29/year. Includes your initial analysis and an annual review every year.</p>
+            <p>Not sure how to pull your interval data from WEMC's portal? Ask me.</p>
           </div>
           <div class="promise-item">
             <div class="promise-check">✓</div>
-            <p>Your data is used solely to run your analysis and never shared or sold.</p>
+            <p>Questions about what the analysis covers or how it works? Ask me.</p>
           </div>
           <div class="promise-item">
             <div class="promise-check">✓</div>
-            <p>Straight answer regardless of the result — I'll tell you to stay put if that's what the data says.</p>
+            <p>Straight answers — no sales pressure, no follow-up campaign.</p>
           </div>
-          <div class="promise-item">
-            <div class="promise-check">✓</div>
-            <p>Currently available for Wake Electric Cooperative members.</p>
+        </div>
+        <div class="info-banner green" style="margin-top:2rem;">
+          <div class="avail-icon">⚡</div>
+          <div class="avail-text">
+            <strong>Ready to get your analysis?</strong>
+            <p>Skip the form and go straight to sign-up. <a href="https://buy.stripe.com/bJe00kcYf9eH4Oc2dubEA00" target="_blank" style="color:var(--accent); font-weight:600;">Get started for $29/year →</a></p>
           </div>
         </div>
       </div>
       <div class="reveal">
         <form action="https://formspree.io/f/xqeyyvjy" method="POST" onsubmit="handleSubmit(event)">
           <div>
-            <label for="name">Full Name</label>
+            <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Jane Smith" required />
           </div>
           <div>
@@ -654,22 +658,10 @@
             <input type="email" id="email" name="email" placeholder="jane@example.com" required />
           </div>
           <div>
-            <label for="phone">Phone (optional)</label>
-            <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
+            <label for="message">What's your question?</label>
+            <textarea id="message" name="message" placeholder="e.g. I'm not sure how to download my data from the WEMC portal, or I charge an EV at home and want to know if that changes the math…" required></textarea>
           </div>
-          <div>
-            <label for="utility">Your Utility Provider</label>
-            <select id="utility" name="utility" required>
-              <option value="">Select your utility…</option>
-              <option value="wake">Wake Electric Cooperative</option>
-              <option value="other">Other utility — notify me when you expand</option>
-            </select>
-          </div>
-          <div>
-            <label for="message">Anything I should know?</label>
-            <textarea id="message" name="message" placeholder="e.g. I charge an EV at home, I work from home, I have solar panels…"></textarea>
-          </div>
-          <button type="submit" class="btn-primary" style="width:100%; text-align:center;">Send My Request →</button>
+          <button type="submit" class="btn-primary" style="width:100%; text-align:center;">Send My Question →</button>
         </form>
       </div>
     </div>
