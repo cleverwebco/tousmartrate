@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About the Service — TOUSmartRate</title>
+  <meta name="description" content="What's included in a TOUSmartRate analysis, how the $29/year subscription works, and what you can expect from start to finish."/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      color-scheme: light only;
+      --bg: #f4f6fa; --surface: #ffffff; --surface2: #eef1f7; --border: #dde2ef;
+      --navy: #1e3a5f; --navy-dark: #16253e;
+      --accent: #16a34a; --accent-light: #dcfce7;
+      --accent2: #d97706; --accent2-light: #fef3c7;
+      --accent3: #2563eb; --accent3-light: #dbeafe;
+      --text: #1a1f2e; --muted: #64748b; --radius: 14px;
+      --ff-display: 'DM Serif Display', serif; --ff-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--ff-body); font-size: 17px; line-height: 1.7; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2.5rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
+    .logo { font-family: var(--ff-display); font-size: 1.4rem; color: var(--navy); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent3); }
+    .nav-links { display: flex; align-items: center; gap: .25rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: .9rem; padding: .4rem .8rem; border-radius: 8px; transition: color .2s, background .2s; white-space: nowrap; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface2); }
+    .nav-cta { background: var(--accent3) !important; color: #fff !important; padding: .45rem 1.2rem !important; border-radius: 50px !important; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--navy) !important; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: .4rem; flex-direction: column; gap: 5px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+    @media (max-width: 768px) {
+      nav { padding: .9rem 1.25rem; }
+      .nav-toggle { display: flex; }
+      .nav-links { display: none; flex-direction: column; align-items: stretch; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); padding: .75rem 1.25rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: .65rem .75rem; font-size: 1rem; }
+      .nav-cta { margin-top: .5rem; text-align: center; }
+    }
+
+    /* PAGE HERO */
+    .page-hero { background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 100%); padding: 8rem 1.5rem 5rem; text-align: center; border-bottom: 4px solid; border-image: linear-gradient(90deg, var(--accent), var(--accent3), var(--accent2)) 1; }
+    .page-eyebrow { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #86efac; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: .35rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; }
+    .page-hero h1 { font-family: var(--ff-display); font-size: clamp(2.2rem, 5vw, 3.8rem); color: #fff; line-height: 1.1; max-width: 720px; margin: 0 auto .8rem; }
+    .page-hero h1 em { font-style: italic; color: #86efac; }
+    .page-hero p { color: #94a3b8; font-size: 1.05rem; max-width: 560px; margin: 0 auto; }
+
+    /* CONTENT */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+    .content-section { padding: 5rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .content-section.alt { background: var(--surface); }
+    .section-label { font-size: .78rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--accent3); margin-bottom: .8rem; }
+    h2 { font-family: var(--ff-display); font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.15; color: var(--text); margin-bottom: 1.2rem; }
+    h3 { font-family: var(--ff-display); font-size: 1.3rem; color: var(--text); margin: 2rem 0 .6rem; }
+    p { color: var(--muted); margin-bottom: 1.2rem; }
+    strong { color: var(--text); }
+
+    /* DELIVERABLES */
+    .deliverable-list { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
+    .deliverable { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem 1.6rem; display: flex; gap: 1.2rem; align-items: flex-start; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    .deliverable-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .deliverable-icon.green  { background: var(--accent-light); }
+    .deliverable-icon.blue   { background: var(--accent3-light); }
+    .deliverable-icon.amber  { background: var(--accent2-light); }
+    .deliverable-body h4 { font-family: var(--ff-display); font-size: 1.1rem; color: var(--text); margin-bottom: .3rem; }
+    .deliverable-body p { color: var(--muted); font-size: .93rem; margin: 0; }
+
+    /* TIMELINE */
+    .timeline { display: flex; flex-direction: column; gap: 0; margin: 2rem 0; position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .tl-step { display: flex; gap: 1.5rem; padding-bottom: 2rem; position: relative; }
+    .tl-step:last-child { padding-bottom: 0; }
+    .tl-num { width: 42px; height: 42px; border-radius: 50%; background: var(--accent3); color: #fff; font-family: var(--ff-display); font-size: 1.1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1; box-shadow: 0 0 0 4px var(--bg); }
+    .tl-content { padding-top: .5rem; }
+    .tl-content h4 { font-family: var(--ff-display); font-size: 1.1rem; color: var(--text); margin-bottom: .3rem; }
+    .tl-content p { color: var(--muted); font-size: .93rem; margin: 0; }
+
+    /* PRICING CARD */
+    .pricing-highlight { background: var(--surface); border: 2px solid var(--accent3); border-radius: var(--radius); padding: 2.5rem; position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(37,99,235,0.1); margin: 2rem 0; }
+    .pricing-highlight::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent3), var(--accent)); }
+    .price-row { display: flex; align-items: baseline; gap: .5rem; margin: 1rem 0 .3rem; }
+    .price-big { font-family: var(--ff-display); font-size: 3.5rem; color: var(--accent3); line-height: 1; }
+    .price-period { color: var(--muted); font-size: 1rem; }
+    .price-sub { color: var(--muted); font-size: .88rem; margin-bottom: 1.5rem; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 1.5rem 0; }
+    .feature-item { display: flex; gap: .6rem; font-size: .93rem; color: var(--muted); }
+    .feature-item .chk { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .founding-badge { display: inline-block; background: var(--accent2-light); border: 1px solid #fde68a; color: var(--accent2); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .3rem .9rem; border-radius: 50px; margin-bottom: 1rem; }
+    .btn-primary { background: var(--accent3); color: #fff; font-family: var(--ff-body); font-weight: 600; font-size: 1rem; padding: .85rem 2.2rem; border-radius: 50px; text-decoration: none; display: inline-block; transition: background .2s, transform .15s; border: none; cursor: pointer; }
+    .btn-primary:hover { background: var(--navy); transform: translateY(-2px); }
+
+    /* INFO BANNERS */
+    .info-banner { border-radius: var(--radius); padding: 1.2rem 1.6rem; display: flex; align-items: flex-start; gap: 1rem; margin: 1.5rem 0; }
+    .info-banner.green { background: var(--accent-light); border: 1px solid #86efac; }
+    .info-banner.blue  { background: var(--accent3-light); border: 1px solid #bfdbfe; }
+    .info-banner.amber { background: var(--accent2-light); border: 1px solid #fde68a; }
+    .info-banner .icon { font-size: 1.4rem; flex-shrink: 0; }
+    .info-banner .text strong { display: block; margin-bottom: .25rem; color: var(--text); font-size: .98rem; }
+    .info-banner .text p { color: var(--muted); font-size: .88rem; margin: 0; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .faq-q { width: 100%; text-align: left; background: none; border: none; padding: 1.2rem 1.5rem; font-family: var(--ff-body); font-size: 1rem; font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .faq-q:hover { background: var(--surface2); }
+    .faq-q .arrow { color: var(--accent3); font-size: 1.1rem; transition: transform .25s; flex-shrink: 0; }
+    .faq-q.open .arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 1.5rem 1.2rem; color: var(--muted); font-size: .95rem; line-height: 1.7; }
+    .faq-a.open { display: block; }
+
+    /* CTA */
+    .cta-section { background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding: 5rem 1.5rem; text-align: center; }
+    .cta-section h2 { color: #fff; margin-bottom: 1rem; }
+    .cta-section p { color: #94a3b8; max-width: 500px; margin: 0 auto 2rem; }
+    .btn-outline { background: transparent; color: #fff; font-family: var(--ff-body); font-weight: 500; font-size: 1rem; padding: .85rem 2.2rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.3); text-decoration: none; display: inline-block; transition: border-color .2s; margin-left: 1rem; }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.7); }
+    .cta-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; }
+
+    footer { border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; color: var(--muted); font-size: .85rem; background: var(--surface); }
+
+    @media (max-width: 640px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .cta-btns .btn-outline { margin-left: 0; }
+    }
+  </style>
+  <style>
+    /* Force light mode on all browsers regardless of OS dark mode setting */
+    html, body { background-color: #f4f6fa !important; color: #1a1f2e !important; }
+    * { color-scheme: light !important; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">TOU<span>SmartRate</span></a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links">
+    <a href="index.html#how">How It Works</a>
+    <a href="what-is-tou.html">What Is TOU?</a>
+    <a href="about-the-service.html" class="active">The Service</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#contact">Get Started</a>
+    <a href="index.html#contact" class="nav-cta">Get My Analysis</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-eyebrow">The Service</div>
+  <h1>What You Get for<br><em>$29 a Year</em></h1>
+  <p>A complete, data-driven TOU analysis built on your actual usage — not estimates. Here's exactly what's included and how the process works.</p>
+</div>
+
+<!-- WHAT'S INCLUDED -->
+<div class="content-section">
+  <div class="container">
+    <div class="section-label">What's Included</div>
+    <h2>Everything you need to make<br>a confident decision.</h2>
+    <p>Your $29/year subscription includes the initial analysis and an automatic re-analysis every year. Here's what you receive:</p>
+
+    <div class="deliverable-list">
+      <div class="deliverable">
+        <div class="deliverable-icon green">📊</div>
+        <div class="deliverable-body">
+          <h4>Personalized Visual Report</h4>
+          <p>A self-contained interactive HTML report showing your monthly savings vs. both current and historical flat rates, seasonal load curves with your on-peak windows highlighted, and a full annual cost breakdown.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon blue">📈</div>
+        <div class="deliverable-body">
+          <h4>Load Shift Scenario</h4>
+          <p>A dedicated section showing how shifting just 20% of your on-peak usage to off-peak hours could add additional savings on top of what you'd already gain — without any major lifestyle changes.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon amber">✉️</div>
+        <div class="deliverable-body">
+          <h4>Plain-English Summary Email</h4>
+          <p>A clear, direct summary of what your analysis found — whether TOU would save you money or not, what to do next if you want to switch, and how to contact Wake Electric to make the change.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon green">🔄</div>
+        <div class="deliverable-body">
+          <h4>Annual Re-Analysis</h4>
+          <p>Every year, I'll re-run your analysis with fresh data. Rates change. Your usage changes. What wasn't worth switching last year might be worth it this year — and you'll know without having to ask.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon blue">💬</div>
+        <div class="deliverable-body">
+          <h4>Direct Access to Marc</h4>
+          <p>Questions about your report? Wondering whether to switch? Message me directly. You're getting a person, not a chatbot. You're also welcome to reach out between annual analyses if you know your usage patterns have changed — a new EV, solar panels, a heat pump, or a change in your work schedule can all shift the math, and I'm happy to take a look.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="content-section alt">
+  <div class="container">
+    <div class="section-label">The Process</div>
+    <h2>From sign-up to final report<br>in just a few days.</h2>
+
+    <div class="timeline">
+      <div class="tl-step">
+        <div class="tl-num">1</div>
+        <div class="tl-content">
+          <h4>Subscribe via the payment link</h4>
+          <p>Click the "Get Started" button and complete the $29/year subscription through our secure payment page. Once payment is confirmed, you'll receive a welcome email from me with everything you need to get started.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">2</div>
+        <div class="tl-content">
+          <h4>You download your usage data</h4>
+          <p>Log into Wake Electric's member portal and download your hourly interval CSV files — up to 13 months. It takes about 5 minutes, and I'll walk you through exactly where to find them.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">3</div>
+        <div class="tl-content">
+          <h4>Email the files to me</h4>
+          <p>Attach your CSV files and email them directly to me. That's it — no special software, no upload portals, no complicated steps.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">4</div>
+        <div class="tl-content">
+          <h4>I run the full analysis</h4>
+          <p>I process your hourly interval data — validating the files, classifying every hour as on-peak or off-peak, calculating your exact cost under each rate structure, and building your personalized report.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">5</div>
+        <div class="tl-content">
+          <h4>You receive your report and summary</h4>
+          <p>I send you the interactive HTML report along with a plain-English email walking you through the key findings and next steps. Usually within 2–3 business days of receiving your data.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-banner blue">
+      <div class="icon">🔒</div>
+      <div class="text">
+        <strong>Your data stays private</strong>
+        <p>Your interval data is used solely to run your analysis. It is never shared with third parties, sold, or used for any purpose beyond producing your report.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="content-section">
+  <div class="container">
+    <div class="section-label">Pricing</div>
+    <h2>Simple, transparent,<br>and worth it.</h2>
+
+    <div class="pricing-highlight">
+      <div class="founding-badge">⭐ Founding Member Rate</div>
+      <div class="price-row">
+        <div class="price-big">$29</div>
+        <div class="price-period">/ year</div>
+      </div>
+      <div class="price-sub">Billed annually · Cancel anytime</div>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="chk">✓</span> Full interval data analysis</div>
+        <div class="feature-item"><span class="chk">✓</span> Interactive visual report (2 themes)</div>
+        <div class="feature-item"><span class="chk">✓</span> Plain-English email summary</div>
+        <div class="feature-item"><span class="chk">✓</span> Load shift savings scenario</div>
+        <div class="feature-item"><span class="chk">✓</span> Automatic annual re-analysis</div>
+        <div class="feature-item"><span class="chk">✓</span> Direct access to Marc</div>
+      </div>
+      <a href="index.html#contact" class="btn-primary">Get Started →</a>
+    </div>
+
+    <div class="info-banner amber">
+      <div class="icon">💡</div>
+      <div class="text">
+        <strong>Why annual instead of one-time?</strong>
+        <p>A single analysis tells you where you stand today. But rates change, your household changes, and a switch that didn't make sense last year might make perfect sense this year. The annual subscription means you're always working with current information — automatically, without having to remember to ask.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="content-section alt">
+  <div class="container">
+    <div class="section-label">Common Questions</div>
+    <h2>Frequently asked questions.</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if TOU isn't right for me?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          I'll tell you clearly that it's not the right move and explain why. The analysis is worth running regardless of the outcome — knowing you're already on the right plan has value too. I'd rather give you an honest "stay put" than a false recommendation that costs you money.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if I don't have a full year of data?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          The analysis works with whatever data you have — even a few months. The more data available, the more complete the picture, but partial-year analyses are still useful and I'll be clear about what the data does and doesn't show.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I actually switch to TOU if I want to?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          You contact Wake Electric directly — I'm not affiliated with them and can't make changes to your account. To switch, call 800.474.6300 or 919.863.6300, or email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cda4a3aba2bfa0acb9a4a2a38dbaa8a0aee3aea2a0">[email&#160;protected]</a>. You'll need to provide your name, account number, daytime phone number, and email address.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is the $20 fee I've heard about?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          If you switch to TOU and decide within the first year that you'd prefer to go back to the standard flat rate, Wake Electric charges a $20 administrative fee to make that change. After the first year, you can switch back at any time without a fee. This is exactly why it's worth running the analysis before committing.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I cancel my subscription?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Yes, you can cancel anytime. Your analysis and report are yours to keep regardless. If you cancel, your annual renewal simply won't process the following year.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          I'm not a Wake Electric customer — can you still help?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Not yet — the service is currently built specifically around Wake Electric's rate structure and data format. I'm working on expanding to other utilities. Submit your info on the homepage and I'll notify you when your provider is supported.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="container">
+    <h2>Still have questions?<br>Just ask.</h2>
+    <p>I'd rather answer your questions upfront than have you sign up uncertain. Send me a message and I'll get back to you personally.</p>
+    <div class="cta-btns">
+      <a href="index.html#contact" class="btn-primary">Get My Analysis — $29/yr</a>
+      <a href="what-is-tou.html" class="btn-outline">Learn about TOU rates</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 TOUSmartRate. All rights reserved.</p>
+  <p style="margin-top:.4rem;">Not affiliated with Wake Electric Cooperative or any utility company.</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('open');
+  });
+
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    documen

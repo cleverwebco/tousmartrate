@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What Is a Time-of-Use Rate? — TOUSmartRate</title>
+  <meta name="description" content="A plain-English explanation of how Time-of-Use electricity rates work, how they compare to flat rates, and who benefits most from switching."/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      color-scheme: light only;
+      --bg: #f4f6fa; --surface: #ffffff; --surface2: #eef1f7; --border: #dde2ef;
+      --navy: #1e3a5f; --navy-dark: #16253e;
+      --accent: #16a34a; --accent-light: #dcfce7;
+      --accent2: #d97706; --accent2-light: #fef3c7;
+      --accent3: #2563eb; --accent3-light: #dbeafe;
+      --red: #dc2626; --red-light: #fee2e2;
+      --text: #1a1f2e; --muted: #64748b; --radius: 14px;
+      --ff-display: 'DM Serif Display', serif; --ff-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--ff-body); font-size: 17px; line-height: 1.7; overflow-x: hidden; }
+    .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border); box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    }
+    .logo { font-family: var(--ff-display); font-size: 1.4rem; color: var(--navy); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent3); }
+    .nav-links { display: flex; align-items: center; gap: .25rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: .9rem; padding: .4rem .8rem; border-radius: 8px; transition: color .2s, background .2s; white-space: nowrap; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface2); }
+    .nav-cta { background: var(--accent3) !important; color: #fff !important; padding: .45rem 1.2rem !important; border-radius: 50px !important; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--navy) !important; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: .4rem; flex-direction: column; gap: 5px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+    @media (max-width: 768px) {
+      nav { padding: .9rem 1.25rem; }
+      .nav-toggle { display: flex; }
+      .nav-links { display: none; flex-direction: column; align-items: stretch; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); padding: .75rem 1.25rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: .65rem .75rem; font-size: 1rem; }
+      .nav-cta { margin-top: .5rem; text-align: center; }
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 100%);
+      padding: 8rem 1.5rem 5rem; text-align: center;
+      border-bottom: 4px solid; border-image: linear-gradient(90deg, var(--accent), var(--accent3), var(--accent2)) 1;
+    }
+    .page-eyebrow { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #86efac; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: .35rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; }
+    .page-hero h1 { font-family: var(--ff-display); font-size: clamp(2.2rem, 5vw, 3.8rem); color: #fff; line-height: 1.1; max-width: 720px; margin: 0 auto .8rem; }
+    .page-hero h1 em { font-style: italic; color: #86efac; }
+    .page-hero p { color: #94a3b8; font-size: 1.05rem; max-width: 560px; margin: 0 auto; }
+
+    /* CONTENT */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+    .content-section { padding: 5rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .content-section:last-of-type { border-bottom: none; }
+    .section-label { font-size: .78rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--accent3); margin-bottom: .8rem; }
+    h2 { font-family: var(--ff-display); font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.15; color: var(--text); margin-bottom: 1.2rem; }
+    h3 { font-family: var(--ff-display); font-size: 1.35rem; color: var(--text); margin: 2rem 0 .6rem; }
+    p { color: var(--muted); margin-bottom: 1.2rem; }
+    p:last-child { margin-bottom: 0; }
+    strong { color: var(--text); }
+
+    /* COMPARISON TABLE */
+    .compare-table { width: 100%; border-collapse: collapse; margin: 2rem 0; border-radius: var(--radius); overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .compare-table th { background: var(--navy); color: #fff; font-family: var(--ff-display); font-size: 1.1rem; font-weight: 400; padding: 1rem 1.4rem; text-align: left; }
+    .compare-table th:first-child { width: 35%; }
+    .compare-table td { padding: .9rem 1.4rem; border-bottom: 1px solid var(--border); background: var(--surface); font-size: .95rem; color: var(--muted); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { font-weight: 600; color: var(--text); background: var(--surface2); }
+    .compare-table td.good { color: var(--accent); font-weight: 600; }
+    .compare-table td.bad  { color: var(--red);    font-weight: 600; }
+
+    /* RATE CALLOUT BOXES */
+    .rate-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+    .rate-box { border-radius: var(--radius); padding: 1.5rem; text-align: center; }
+    .rate-box.on  { background: var(--red-light);    border: 1px solid #fca5a5; }
+    .rate-box.off { background: var(--accent3-light); border: 1px solid #93c5fd; }
+    .rate-box.std { background: var(--surface2);     border: 1px solid var(--border); }
+    .rate-box .rate-label { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
+    .rate-box.on  .rate-label { color: var(--red); }
+    .rate-box.off .rate-label { color: var(--accent3); }
+    .rate-box.std .rate-label { color: var(--muted); }
+    .rate-box .rate-num { font-family: var(--ff-display); font-size: 2.4rem; line-height: 1; margin-bottom: .3rem; }
+    .rate-box.on  .rate-num { color: var(--red); }
+    .rate-box.off .rate-num { color: var(--accent3); }
+    .rate-box.std .rate-num { color: var(--text); }
+    .rate-box .rate-desc { font-size: .8rem; color: var(--muted); }
+
+    /* PEAK WINDOWS */
+    .season-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+    .season-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.8rem; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    .season-card h4 { font-family: var(--ff-display); font-size: 1.2rem; margin-bottom: 1rem; color: var(--text); }
+    .peak-window { background: var(--red-light); border: 1px solid #fca5a5; border-radius: 8px; padding: .8rem 1rem; margin-bottom: .8rem; }
+    .peak-window .pw-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--red); margin-bottom: .2rem; }
+    .peak-window .pw-time { font-family: var(--ff-display); font-size: 1.5rem; color: var(--red); }
+    .off-window { background: var(--accent3-light); border: 1px solid #93c5fd; border-radius: 8px; padding: .8rem 1rem; }
+    .off-window .pw-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent3); margin-bottom: .2rem; }
+    .off-window .pw-time { font-family: var(--ff-display); font-size: 1.2rem; color: var(--accent3); }
+
+    /* WHO BENEFITS */
+    .benefit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+    .benefit-card { border-radius: var(--radius); padding: 1.8rem; }
+    .benefit-card.wins { background: var(--accent-light); border: 1px solid #86efac; }
+    .benefit-card.loses { background: var(--red-light); border: 1px solid #fca5a5; }
+    .benefit-card h4 { font-family: var(--ff-display); font-size: 1.15rem; margin-bottom: 1rem; }
+    .benefit-card.wins h4 { color: var(--accent); }
+    .benefit-card.loses h4 { color: var(--red); }
+    .benefit-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .benefit-list li { display: flex; gap: .6rem; font-size: .93rem; color: var(--muted); }
+    .benefit-list li .bi { flex-shrink: 0; margin-top: .1rem; }
+
+    /* INFO BANNERS */
+    .info-banner { border-radius: var(--radius); padding: 1.2rem 1.6rem; display: flex; align-items: flex-start; gap: 1rem; margin: 2rem 0; }
+    .info-banner.blue { background: var(--accent3-light); border: 1px solid #bfdbfe; }
+    .info-banner.amber { background: var(--accent2-light); border: 1px solid #fde68a; }
+    .info-banner .icon { font-size: 1.4rem; flex-shrink: 0; }
+    .info-banner .text strong { display: block; margin-bottom: .25rem; color: var(--text); font-size: .98rem; }
+    .info-banner .text p { color: var(--muted); font-size: .88rem; margin: 0; }
+
+    /* CTA SECTION */
+    .cta-section { background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding: 5rem 1.5rem; text-align: center; }
+    .cta-section h2 { color: #fff; margin-bottom: 1rem; }
+    .cta-section p { color: #94a3b8; max-width: 500px; margin: 0 auto 2rem; }
+    .btn-primary { background: var(--accent); color: #fff; font-family: var(--ff-body); font-weight: 600; font-size: 1rem; padding: .85rem 2.2rem; border-radius: 50px; text-decoration: none; display: inline-block; transition: background .2s, transform .15s; }
+    .btn-primary:hover { background: #15803d; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: #fff; font-family: var(--ff-body); font-weight: 500; font-size: 1rem; padding: .85rem 2.2rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.3); text-decoration: none; display: inline-block; transition: border-color .2s; margin-left: 1rem; }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.7); }
+
+    footer { border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; color: var(--muted); font-size: .85rem; background: var(--surface); }
+
+    @media (max-width: 640px) {
+      .rate-grid { grid-template-columns: 1fr; }
+      .season-grid { grid-template-columns: 1fr; }
+      .benefit-grid { grid-template-columns: 1fr; }
+      .compare-table { font-size: .88rem; }
+      .compare-table th, .compare-table td { padding: .75rem 1rem; }
+      .cta-section .btn-outline { margin-left: 0; margin-top: .75rem; }
+      .cta-section { padding: 4rem 1.25rem; }
+      .cta-section .cta-btns { display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+    }
+  </style>
+  <style>
+    /* Force light mode on all browsers regardless of OS dark mode setting */
+    html, body { background-color: #f4f6fa !important; color: #1a1f2e !important; }
+    * { color-scheme: light !important; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">TOU<span>SmartRate</span></a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links">
+    <a href="index.html#how">How It Works</a>
+    <a href="what-is-tou.html" class="active">What Is TOU?</a>
+    <a href="about-the-service.html">The Service</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#contact">Get Started</a>
+    <a href="index.html#contact" class="nav-cta">Get My Analysis</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-eyebrow">The Basics</div>
+  <h1>What Is a<br><em>Time-of-Use Rate?</em></h1>
+  <p>A plain-English guide to how TOU electricity pricing works, how it compares to the standard flat rate, and how to know if it's right for your household.</p>
+</div>
+
+<!-- SECTION 1: THE SIMPLE VERSION -->
+<div class="content-section">
+  <div class="container">
+    <div class="section-label">The Simple Version</div>
+    <h2>Your electricity price changes<br>based on the time of day.</h2>
+    <p>With a standard flat rate, you pay the same price per kilowatt-hour (kWh) no matter when you use electricity — 3 AM or 5 PM, the price is identical. It's simple and predictable.</p>
+    <p>A Time-of-Use (TOU) rate works differently. The price per kWh varies depending on what time it is. During a short "on-peak" window each day, electricity costs more. During all other hours — "off-peak" — it costs significantly less.</p>
+    <p>The idea is straightforward: if most of your electricity use happens outside the on-peak window, you pay a lower blended rate than the flat rate. If a lot of your use falls inside the on-peak window, you may pay more.</p>
+
+    <div class="rate-grid">
+      <div class="rate-box on">
+        <div class="rate-label">On-Peak</div>
+        <div class="rate-num">24¢</div>
+        <div class="rate-desc">per kWh during peak hours</div>
+      </div>
+      <div class="rate-box off">
+        <div class="rate-label">Off-Peak</div>
+        <div class="rate-num">8¢</div>
+        <div class="rate-desc">per kWh all other hours</div>
+      </div>
+      <div class="rate-box std">
+        <div class="rate-label">Standard Flat</div>
+        <div class="rate-num">13¢</div>
+        <div class="rate-desc">per kWh every hour</div>
+      </div>
+    </div>
+
+    <p>Notice that the off-peak rate (8¢) is well below the flat rate (13¢). That gap is where the savings come from — if you use most of your energy off-peak, you're paying 8¢ for hours that would have cost you 13¢ on the flat rate.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: PEAK WINDOWS -->
+<div class="content-section" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-label">The On-Peak Windows</div>
+    <h2>When is electricity<br>more expensive?</h2>
+    <p>Wake Electric uses two different on-peak windows depending on the time of year. Both windows are just <strong>two hours long</strong>, every day.</p>
+
+    <div class="season-grid">
+      <div class="season-card">
+        <h4>❄️ Winter Season<br><span style="font-family:var(--ff-body); font-size:.9rem; font-weight:400; color:var(--muted);">November 1 – March 31</span></h4>
+        <div class="peak-window">
+          <div class="pw-label">On-Peak Hours</div>
+          <div class="pw-time">6:00 AM – 8:00 AM</div>
+        </div>
+        <div class="off-window">
+          <div class="pw-label">Off-Peak Hours</div>
+          <div class="pw-time">All other hours (22 hrs/day)</div>
+        </div>
+      </div>
+      <div class="season-card">
+        <h4>☀️ Summer Season<br><span style="font-family:var(--ff-body); font-size:.9rem; font-weight:400; color:var(--muted);">April 1 – October 31</span></h4>
+        <div class="peak-window">
+          <div class="pw-label">On-Peak Hours</div>
+          <div class="pw-time">4:00 PM – 6:00 PM</div>
+        </div>
+        <div class="off-window">
+          <div class="pw-label">Off-Peak Hours</div>
+          <div class="pw-time">All other hours (22 hrs/day)</div>
+        </div>
+      </div>
+    </div>
+
+    <p>In both seasons, 22 out of every 24 hours are off-peak. That means <strong>92% of your time is at the lower rate</strong>. The question is simply: what's happening during that other 8%?</p>
+
+    <div class="info-banner blue">
+      <div class="icon">💡</div>
+      <div class="text">
+        <strong>Why these windows?</strong>
+        <p>Utilities set on-peak windows around times of high grid demand. Winter mornings see usage spike as households wake up and heat their homes. Summer evenings see demand peak as people return home and run air conditioning. By charging more during these windows, utilities encourage customers to shift flexible loads — and reward those who naturally use less during peak times.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: COMPARISON -->
+<div class="content-section">
+  <div class="container">
+    <div class="section-label">Side by Side</div>
+    <h2>TOU vs. Flat Rate:<br>A direct comparison.</h2>
+
+    <div class="table-scroll">
+    <table class="compare-table">
+      <tr>
+        <th>Factor</th>
+        <th>Standard Flat Rate</th>
+        <th>Time-of-Use Rate</th>
+      </tr>
+      <tr>
+        <td>Price structure</td>
+        <td>Same price 24/7</td>
+        <td>Varies by time of day</td>
+      </tr>
+      <tr>
+        <td>On-peak price</td>
+        <td>13¢/kWh (always)</td>
+        <td class="bad">24¢/kWh (2 hrs/day)</td>
+      </tr>
+      <tr>
+        <td>Off-peak price</td>
+        <td>13¢/kWh (always)</td>
+        <td class="good">8¢/kWh (22 hrs/day)</td>
+      </tr>
+      <tr>
+        <td>Predictability</td>
+        <td>Very predictable</td>
+        <td>Depends on your habits</td>
+      </tr>
+      <tr>
+        <td>Savings potential</td>
+        <td>None — locked in</td>
+        <td>High if usage is off-peak</td>
+      </tr>
+      <tr>
+        <td>Risk</td>
+        <td>None</td>
+        <td>Higher bill if peak-heavy</td>
+      </tr>
+      <tr>
+        <td>Best for</td>
+        <td>Households with unpredictable or peak-heavy usage</td>
+        <td>Households with flexible or naturally off-peak usage</td>
+      </tr>
+    </table>
+    </div>  </div>
+</div>
+
+<!-- SECTION 4: WHO BENEFITS -->
+<div class="content-section" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-label">Who Should Switch?</div>
+    <h2>TOU is a great fit for some<br>households — and not others.</h2>
+    <p>The honest answer is that it depends entirely on your specific usage pattern. Here are the common household types that tend to fall on each side:</p>
+
+    <div class="benefit-grid">
+      <div class="benefit-card wins">
+        <h4>✅ Likely to save on TOU</h4>
+        <ul class="benefit-list">
+          <li><span class="bi">•</span>Work-from-home households that run laundry and appliances during the day</li>
+          <li><span class="bi">•</span>Households that sleep through the winter morning peak (6–8 AM)</li>
+          <li><span class="bi">•</span>EV owners who charge overnight rather than in the evening</li>
+          <li><span class="bi">•</span>Retirees or home-based workers with flexible daily routines</li>
+          <li><span class="bi">•</span>Households with solar panels generating daytime power</li>
+        </ul>
+      </div>
+      <div class="benefit-card loses">
+        <h4>⚠️ May not benefit from TOU</h4>
+        <ul class="benefit-list">
+          <li><span class="bi">•</span>Households that run the dishwasher or laundry right after dinner (summer peak window)</li>
+          <li><span class="bi">•</span>EV owners who plug in immediately when they get home in the evening</li>
+          <li><span class="bi">•</span>Early risers who run heavy appliances first thing in the morning (winter)</li>
+          <li><span class="bi">•</span>Households where routines are fixed and can't be shifted</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-banner amber">
+      <div class="icon">⚠️</div>
+      <div class="text">
+        <strong>The $20 switching fee — know before you go</strong>
+        <p>If you switch to TOU and decide within the first year it's not for you, Wake Electric charges a $20 administrative fee to return to the standard rate. That's not a reason to avoid exploring TOU — it's a reason to run the numbers before you commit. Which is exactly what I do.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: THE ANALYSIS -->
+<div class="content-section">
+  <div class="container">
+    <div class="section-label">How to Actually Know</div>
+    <h2>Guessing isn't good enough.<br>Your interval data tells the real story.</h2>
+    <p>All of the above is useful context — but none of it tells you what <em>you</em> would actually save or lose. The only way to know for certain is to take your actual hourly usage data and recalculate your bill under each rate structure.</p>
+    <p>Your smart meter records your energy use every hour, every day. Wake Electric makes that data available to you through their member portal. When you provide that data to me, I run it through a full year of calculations — hour by hour, season by season — and show you exactly what your bill would have been under TOU vs. what it was on the flat rate.</p>
+
+    <h3>What makes this different from guessing</h3>
+    <p>Generic TOU calculators ask you to estimate how much energy you use during peak hours. Most people have no idea, and the estimates are almost always wrong. The analysis I run uses your actual metered data — not approximations — so the result reflects your real household, not a generic profile.</p>
+
+    <h3>What you get at the end</h3>
+    <p>A personalized report showing your monthly savings or loss for the full year, your actual load curve overlaid on the peak windows, and a load-shift scenario showing how small changes in behavior could save even more. Plus a plain-English bottom line: switch or don't, and why.</p>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="container">
+    <h2>Ready to find out where<br>you actually stand?</h2>
+    <p>I'll run your numbers and give you a straight answer — no sales pitch, no pressure. If TOU isn't right for you, I'll tell you that too.</p>
+    <div class="cta-btns">
+      <a href="index.html#contact" class="btn-primary">Get My Analysis — $29/yr</a>
+      <a href="about-the-service.html" class="btn-outline">See How the Service Works</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 TOUSmartRate. All rights reserved.</p>
+  <p style="margin-top:.4rem;">Not affiliated with Wake Electric Cooperative or any utility company.</p>
+</footer>
+
+<script>
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
