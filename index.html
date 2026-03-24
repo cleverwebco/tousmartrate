@@ -158,6 +158,9 @@
     .stat { text-align: center; }
     .stat-num { font-family: var(--ff-display); font-size: 2.6rem; color: #86efac; line-height: 1; }
     .stat-label { font-size: .8rem; color: #94a3b8; font-weight: 500; margin-top: .3rem; letter-spacing: .04em; text-transform: uppercase; }
+    a.stat-reviews { text-decoration: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: .6rem 1.2rem; transition: background .2s, border-color .2s; }
+    a.stat-reviews:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
+    a.stat-reviews .stat-num { color: #f59e0b; font-size: 1.4rem; letter-spacing: .05em; }
 
     /* ── SHARED ── */
     section { position: relative; z-index: 1; }
@@ -282,8 +285,34 @@
     }
     .bill-placeholder .icon { font-size: 3rem; opacity: .4; }
 
+    /* ── TESTIMONIALS ── */
+    #testimonials { padding: 7rem 1.5rem; background: var(--bg); border-top: 1px solid var(--border); }
+    .testimonials-header { max-width: 560px; margin-bottom: 3rem; }
+    .testimonials-header p { color: var(--muted); margin-top: .8rem; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .testimonial-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      display: flex; flex-direction: column; gap: 1.2rem;
+      position: relative; overflow: hidden;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .testimonial-card:hover { border-color: var(--accent3); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(37,99,235,0.08); }
+    .testimonial-card::before { content: '\201C'; position: absolute; top: -8px; right: 16px; font-family: var(--ff-display); font-size: 5rem; color: var(--accent3-light); line-height: 1; pointer-events: none; }
+    .testimonial-stars { color: #f59e0b; font-size: .9rem; letter-spacing: .05em; }
+    .testimonial-body { color: var(--muted); font-size: .94rem; line-height: 1.75; flex: 1; }
+    .testimonial-author { display: flex; align-items: center; gap: .75rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .testimonial-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--accent3-light); border: 2px solid var(--accent3); display: flex; align-items: center; justify-content: center; font-family: var(--ff-display); font-size: 1rem; color: var(--accent3); flex-shrink: 0; }
+    .testimonial-meta { display: flex; flex-direction: column; }
+    .testimonial-name { font-weight: 600; font-size: .92rem; color: var(--text); }
+    .testimonial-tag { font-size: .78rem; color: var(--muted); }
+    .testimonial-card.featured { border-color: var(--accent3); background: linear-gradient(160deg, #f0f7ff 0%, var(--surface) 60%); }
+    @media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
     /* ── WHY TOU ── */
-    #why { padding: 7rem 1.5rem; background: var(--bg); border-top: 1px solid var(--border); }
+    #why { padding: 7rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); }
+
     .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
     .why-card {
       background: var(--surface); border: 1px solid var(--border);
@@ -371,6 +400,7 @@
     <a href="what-is-tou.html">What Is TOU?</a>
     <a href="about-the-service.html">The Service</a>
     <a href="#pricing">Pricing</a>
+    <a href="#testimonials">Reviews</a>
     <a href="#contact">Ask a Question</a>
     <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" class="nav-cta" target="_blank">Get My Analysis</a>
   </div>
@@ -400,6 +430,10 @@
       <div class="stat-num">15+</div>
       <div class="stat-label">Years Industry Experience</div>
     </div>
+    <a href="#testimonials" class="stat stat-reviews">
+      <div class="stat-num">★★★★★</div>
+      <div class="stat-label">5-Star Reviews</div>
+    </a>
   </div>
 </section>
 
@@ -582,6 +616,62 @@
              loading="lazy"
              style="width:100%; display:block; border-radius:var(--radius);" />
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <div class="section-label">What Customers Are Saying</div>
+      <h2>Real feedback from<br>Wake Electric members.</h2>
+      <p>These are actual responses from neighbors who've had their usage analyzed — in their own words.</p>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-body">
+          "Thanks, Marc — this was really helpful! Based on our typical usage patterns, we could have been saving quite a bit with TOU, but I had no idea the option even existed until Marc posted about it and ran our assessment. My next step is to invest in smart thermostats to program our HVAC and squeeze out even more savings by shifting away from peak hours."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">W</div>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Wake Electric Member</span>
+            <span class="testimonial-tag">Homeowner · Neighbor referral</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-body">
+          "Just had my energy usage reviewed and I'm genuinely glad I did. Based on my actual usage data, switching to a Time-of-Use plan could save me money without changing a single thing in my routine. Everything was explained clearly and the report made it easy to understand exactly where my money is going. Definitely worth checking out if you're looking to trim a little off your monthly bill."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">W</div>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Wake Electric Member</span>
+            <span class="testimonial-tag">Homeowner · Organic referral</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card featured reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-body">
+          "I can personally attest to the value here. The analysis is detailed, thorough, and clearly well thought out. As someone with experience in energy audits and energy management, I can confidently say this report stands above the rest. It's an exceptional value — easily one of the best investments you can make, especially with energy costs continuing to rise. A smart, practical way to stay ahead of it. Great work, Marc."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">E</div>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Energy Industry Professional</span>
+            <span class="testimonial-tag">Energy audits &amp; management</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
