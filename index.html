@@ -5,22 +5,19 @@
   <meta name="color-scheme" content="light only" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TOUSmartRate — Stop Overpaying for Electricity</title>
-  <meta name="description" content="I'll analyze your Wake Electric interval data and tell you whether switching to a Time-of-Use rate would save you money. $49/year, by a 15-year energy industry professional."/>
+  <meta name="description" content="Find out in 48 hours if you're overpaying Wake Electric. I'll analyze your actual usage data and tell you exactly how much you're leaving on the table. $49/year, guaranteed."/>
   <link rel="canonical" href="https://tousmartrate.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tousmartrate.com/" />
   <meta property="og:site_name" content="TOUSmartRate" />
-  <meta property="og:title" content="TOUSmartRate — Find Out if You're on the Wrong Rate Plan" />
-  <meta property="og:description" content="I'll analyze your Wake Electric interval data and tell you plainly whether switching to a Time-of-Use rate would save you money — or not. $49/year." />
+  <meta property="og:title" content="TOUSmartRate — Are You Overpaying Wake Electric?" />
+  <meta property="og:description" content="I'll analyze your actual Wake Electric usage data and tell you exactly how much you're leaving on the table. $49/year, guaranteed." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="TOUSmartRate — Find Out if You're on the Wrong Rate Plan" />
-  <meta name="twitter:description" content="I'll analyze your Wake Electric interval data and tell you plainly whether switching to a Time-of-Use rate would save you money — or not. $49/year." />
   <meta property="og:image" content="https://tousmartrate.com/images/og-image.png?v=2" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:image" content="https://tousmartrate.com/images/og-image.png?v=2" />
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FP6WW4LXC7"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -34,6 +31,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -57,334 +55,269 @@
       --ff-body: 'DM Sans', sans-serif;
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--ff-body); font-size: 17px; line-height: 1.65; overflow-x: hidden; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-body);
+      font-size: 17px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    html, body { background-color: #f4f6fa !important; color: #1a1f2e !important; }
+    * { color-scheme: light !important; }
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2.5rem;
-      background: rgba(255,255,255,0.92); backdrop-filter: blur(14px);
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       box-shadow: 0 1px 8px rgba(0,0,0,0.06);
     }
-    .logo { font-family: var(--ff-display); font-size: 1.4rem; color: var(--navy); letter-spacing: -0.02em; text-decoration: none; }
+    .logo { font-family: var(--ff-display); font-size: 1.35rem; color: var(--navy); letter-spacing: -0.02em; text-decoration: none; }
     .logo span { color: var(--accent3); }
-    .nav-links { display: flex; align-items: center; gap: .25rem; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: .9rem; padding: .4rem .8rem; border-radius: 8px; transition: color .2s, background .2s; white-space: nowrap; }
+    .nav-links { display: flex; align-items: center; gap: .2rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: .88rem; padding: .4rem .75rem; border-radius: 8px; transition: color .2s, background .2s; white-space: nowrap; }
     .nav-links a:hover { color: var(--text); background: var(--surface2); }
-    .nav-cta { background: var(--accent3) !important; color: #fff !important; padding: .45rem 1.2rem !important; border-radius: 50px !important; font-weight: 600 !important; }
+    .nav-cta { background: var(--accent3) !important; color: #fff !important; padding: .45rem 1.1rem !important; border-radius: 50px !important; font-weight: 600 !important; }
     .nav-cta:hover { background: var(--navy) !important; }
-
-    /* Mobile nav toggle */
     .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: .4rem; flex-direction: column; gap: 5px; }
-    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all .25s; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
     @media (max-width: 768px) {
       nav { padding: .9rem 1.25rem; }
       .nav-toggle { display: flex; }
-      .nav-links {
-        display: none; flex-direction: column; align-items: stretch; gap: 0;
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: #fff; border-bottom: 1px solid var(--border);
-        padding: .75rem 1.25rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      }
+      .nav-links { display: none; flex-direction: column; align-items: stretch; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); padding: .75rem 1.25rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
       .nav-links.open { display: flex; }
-      .nav-links a { padding: .65rem .75rem; font-size: 1rem; border-radius: 8px; }
+      .nav-links a { padding: .65rem .75rem; font-size: 1rem; }
       .nav-cta { margin-top: .5rem; text-align: center; }
+    }
+
+    /* ── STICKY CTA BAR ── */
+    .sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: var(--navy-dark); padding: .85rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+      transform: translateY(100%);
+      transition: transform .4s cubic-bezier(.22,1,.36,1);
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-bar-text { color: #94a3b8; font-size: .9rem; }
+    .sticky-bar-text strong { color: #fff; display: block; font-size: 1rem; }
+    .sticky-cta {
+      background: var(--accent); color: #fff;
+      font-family: var(--ff-body); font-weight: 700; font-size: .95rem;
+      padding: .75rem 1.8rem; border-radius: 50px; text-decoration: none;
+      white-space: nowrap; flex-shrink: 0;
+      transition: background .2s;
+    }
+    .sticky-cta:hover { background: #15803d; }
+    @media (max-width: 560px) {
+      .sticky-bar { flex-direction: column; text-align: center; }
+      .sticky-cta { width: 100%; text-align: center; }
     }
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center;
-      padding: 8rem 1.5rem 5rem;
-      background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 60%, #1a4a7a 100%);
+      background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 65%, #1a4a7a 100%);
+      padding: 7rem 1.5rem 5rem;
+      text-align: center;
       position: relative; overflow: hidden;
     }
-    .hero::after {
-      content: ''; position: absolute;
-      width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
-      top: 40%; left: 50%; transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      display: inline-block; position: relative; z-index: 1;
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-      color: #86efac; font-size: .82rem; font-weight: 600;
-      letter-spacing: .12em; text-transform: uppercase;
-      padding: .4rem 1.2rem; border-radius: 50px; margin-bottom: 1.8rem;
-      animation: fadeUp .6s ease both;
+    .hero-badge {
+      display: inline-block;
+      background: rgba(22,163,74,0.18); border: 1px solid rgba(22,163,74,0.4);
+      color: #86efac; font-size: .8rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .4rem 1.1rem; border-radius: 50px; margin-bottom: 1.5rem;
     }
     h1 {
-      font-family: var(--ff-display); font-size: clamp(2.4rem, 6vw, 5rem);
-      line-height: 1.08; letter-spacing: -0.03em; max-width: 780px;
-      color: #fff; position: relative; z-index: 1;
-      animation: fadeUp .7s .1s ease both;
+      font-family: var(--ff-display);
+      font-size: clamp(2.4rem, 6.5vw, 5.2rem);
+      line-height: 1.06; letter-spacing: -.03em;
+      color: #fff; max-width: 820px; margin: 0 auto .6rem;
     }
     h1 em { font-style: italic; color: #86efac; }
     .hero-sub {
-      margin-top: 1.6rem; font-size: 1.1rem; font-weight: 300; color: #94a3b8;
-      max-width: 560px; position: relative; z-index: 1;
-      animation: fadeUp .7s .2s ease both;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 400; color: #94a3b8;
+      max-width: 540px; margin: 0 auto 1.8rem; line-height: 1.6;
     }
-    .hero-actions {
-      margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
-      justify-content: center; position: relative; z-index: 1;
-      animation: fadeUp .7s .3s ease both;
-    }
-    .btn-primary {
+    .hero-sub strong { color: #e2e8f0; font-weight: 600; }
+    .hero-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: .75rem; margin-bottom: 2.5rem; }
+    .btn-hero {
       background: var(--accent); color: #fff;
-      font-family: var(--ff-body); font-weight: 600; font-size: 1rem;
-      padding: .85rem 2.2rem; border-radius: 50px; text-decoration: none;
-      border: none; cursor: pointer; transition: background .2s, transform .15s;
+      font-family: var(--ff-body); font-weight: 700; font-size: 1.15rem;
+      padding: 1rem 2.8rem; border-radius: 50px; text-decoration: none;
+      border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
       display: inline-block; white-space: nowrap;
     }
-    .btn-primary:hover { background: #15803d; transform: translateY(-2px); }
-    .btn-secondary {
-      background: transparent; color: #fff;
-      font-family: var(--ff-body); font-weight: 500; font-size: 1rem;
-      padding: .85rem 2.2rem; border-radius: 50px;
-      border: 1px solid rgba(255,255,255,0.3); text-decoration: none;
-      cursor: pointer; transition: border-color .2s, transform .15s;
-      display: inline-block; white-space: nowrap;
+    .btn-hero:hover { background: #15803d; transform: translateY(-2px); }
+    .hero-guarantee { color: #64748b; font-size: .85rem; }
+    .hero-guarantee strong { color: #86efac; }
+    .hero-proof-row {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
-    .btn-secondary:hover { border-color: rgba(255,255,255,0.7); transform: translateY(-2px); }
-    .hero-stat-row {
-      margin-top: 4rem; display: flex; gap: 2.5rem; flex-wrap: wrap;
-      justify-content: center; position: relative; z-index: 1;
-      animation: fadeUp .7s .4s ease both;
+    .hero-stat { text-align: center; }
+    .hero-stat .num { font-family: var(--ff-display); font-size: 2.4rem; color: #86efac; line-height: 1; }
+    .hero-stat .lbl { font-size: .75rem; color: #64748b; text-transform: uppercase; letter-spacing: .08em; margin-top: .25rem; }
+
+    /* ── PROBLEM SECTION ── */
+    .problem {
+      background: var(--surface);
+      border-top: 4px solid;
+      border-image: linear-gradient(90deg, var(--accent), var(--accent3)) 1;
+      padding: 4rem 1.5rem;
+      text-align: center;
     }
-    .stat { text-align: center; }
-    .stat-num { font-family: var(--ff-display); font-size: 2.6rem; color: #86efac; line-height: 1; }
-    .stat-label { font-size: .8rem; color: #94a3b8; font-weight: 500; margin-top: .3rem; letter-spacing: .04em; text-transform: uppercase; }
-    a.stat-reviews { text-decoration: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: .6rem 1.2rem; transition: background .2s, border-color .2s; }
-    a.stat-reviews:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
-    a.stat-reviews .stat-num { color: #f59e0b; font-size: 1.4rem; letter-spacing: .05em; }
-
-    /* ── SHARED ── */
-    section { position: relative; z-index: 1; }
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
-    .section-label { font-size: .78rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--accent3); margin-bottom: .8rem; }
-    h2 { font-family: var(--ff-display); font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.12; letter-spacing: -.02em; color: var(--text); }
-
-    /* ── TRUST ── */
-    #trust { padding: 5rem 1.5rem; background: var(--surface); border-top: 4px solid; border-image: linear-gradient(90deg, var(--accent), var(--accent3), var(--accent2)) 1; }
-    .trust-inner { max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 3.5rem; align-items: center; }
-    .trust-badge-circle {
-      width: 120px; height: 120px; border-radius: 50%;
-      background: var(--accent3-light); border: 2px solid var(--accent3);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto;
-    }
-    .trust-badge-circle .years { font-family: var(--ff-display); font-size: 2.4rem; color: var(--accent3); line-height: 1; }
-    .trust-badge-circle .years-label { font-size: .62rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; text-align: center; }
-    .trust-copy h2 { font-size: clamp(1.4rem, 3vw, 2.1rem); margin-bottom: .8rem; }
-    .trust-copy p { color: var(--muted); font-size: .98rem; }
-
-    /* ── INFO BANNERS ── */
-    .info-banner { border-radius: var(--radius); padding: 1.2rem 1.6rem; display: flex; align-items: flex-start; gap: 1rem; margin-top: 2rem; }
-    .info-banner.green { background: var(--accent-light); border: 1px solid #bbf7d0; }
-    .info-banner.blue  { background: var(--accent3-light); border: 1px solid #bfdbfe; }
-    .info-banner.amber { background: var(--accent2-light); border: 1px solid #fde68a; }
-    .info-banner .avail-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
-    .info-banner .avail-text strong { display: block; margin-bottom: .25rem; font-size: .98rem; color: var(--text); }
-    .info-banner .avail-text p { color: var(--muted); font-size: .88rem; }
+    .problem-inner { max-width: 640px; margin: 0 auto; }
+    .problem h2 { font-family: var(--ff-display); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--text); margin-bottom: 1rem; line-height: 1.15; }
+    .problem p { color: var(--muted); font-size: 1.05rem; line-height: 1.75; }
+    .problem p strong { color: var(--text); }
 
     /* ── HOW IT WORKS ── */
-    #how { padding: 7rem 1.5rem; background: var(--bg); border-top: 1px solid var(--border); }
-    .how-header { max-width: 560px; margin-bottom: 4rem; }
-    .how-header p { color: var(--muted); margin-top: .8rem; }
-    .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .step {
+    .how { padding: 4.5rem 1.5rem; background: var(--bg); }
+    .how-inner { max-width: 680px; margin: 0 auto; }
+    .section-label { font-size: .75rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--accent3); margin-bottom: .6rem; }
+    .how h2 { font-family: var(--ff-display); font-size: clamp(1.7rem, 3.5vw, 2.6rem); color: var(--text); margin-bottom: 2rem; line-height: 1.15; }
+    .steps-simple { display: flex; flex-direction: column; gap: 1.25rem; }
+    .step-simple {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2rem 1.8rem;
-      transition: border-color .25s, transform .25s, box-shadow .25s;
-      position: relative; overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
-    .step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent3), var(--accent)); opacity: 0; transition: opacity .25s; }
-    .step:hover { border-color: var(--accent3); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(37,99,235,0.1); }
-    .step:hover::before { opacity: 1; }
-    .step-num { font-family: var(--ff-display); font-size: 3.5rem; color: var(--accent3-light); line-height: 1; margin-bottom: .8rem; }
-    .step h3 { font-family: var(--ff-display); font-size: 1.3rem; margin-bottom: .6rem; color: var(--text); }
-    .step p { font-size: .95rem; color: var(--muted); }
-
-    /* ── PEAK CHART ── */
-    #peak { padding: 7rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); }
-    .peak-header { max-width: 680px; margin-bottom: 3rem; }
-    .peak-header p { color: var(--muted); margin-top: .9rem; font-size: .98rem; }
-    .season-tabs { display: flex; gap: .6rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .tab-btn {
-      background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
-      font-family: var(--ff-body); font-size: .88rem; font-weight: 600;
-      padding: .5rem 1.2rem; border-radius: 50px; cursor: pointer; transition: all .2s;
-    }
-    .tab-btn.active { background: var(--accent3-light); border-color: var(--accent3); color: var(--accent3); }
-    .chart-wrap {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2rem 1.5rem 1.5rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
-    .chart-legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; font-size: .85rem; }
-    .legend-item { display: flex; align-items: center; gap: .5rem; color: var(--muted); }
-    .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-    .rate-pills { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.4rem; }
-    .rate-pill { border-radius: 50px; padding: .45rem 1.1rem; font-size: .85rem; font-weight: 600; display: flex; align-items: center; gap: .4rem; }
-    .rate-pill.on  { background: #fee2e2; border: 1px solid #fca5a5; color: #dc2626; }
-    .rate-pill.off { background: var(--accent3-light); border: 1px solid #93c5fd; color: var(--accent3); }
-    .rate-pill.std { background: var(--accent-light); border: 1px solid #86efac; color: var(--accent); }
-
-    /* ── PRICING ── */
-    #pricing { padding: 7rem 1.5rem; border-top: 1px solid var(--border); background: var(--bg); }
-    .pricing-header { max-width: 560px; margin-bottom: 3rem; }
-    .pricing-header p { color: var(--muted); margin-top: .8rem; }
-    .pricing-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
-    .price-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2.5rem 2rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
-    .price-card.featured {
-      border-color: var(--accent3); position: relative; overflow: hidden;
-      box-shadow: 0 8px 32px rgba(37,99,235,0.12);
-    }
-    .price-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent3), var(--accent)); }
-    .price-card-label { font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent3); margin-bottom: 1rem; }
-    .price-card h3 { font-family: var(--ff-display); font-size: 1.5rem; margin-bottom: .5rem; color: var(--text); }
-    .price-amount { font-family: var(--ff-display); font-size: 3.2rem; color: var(--accent3); line-height: 1; margin: 1rem 0 .3rem; }
-    .price-amount sup { font-size: 1.5rem; vertical-align: super; }
-    .price-period { font-size: .85rem; color: var(--muted); margin-bottom: .3rem; }
-    .price-once { font-size: .85rem; color: var(--muted); margin-bottom: 1.4rem; }
-    .price-features { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
-    .price-features li { display: flex; align-items: flex-start; gap: .7rem; font-size: .93rem; color: var(--muted); }
-    .price-features li .chk { color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
-    .price-card .btn-primary { margin-top: 2rem; width: 100%; text-align: center; }
-    .founding-badge {
-      display: inline-block; background: var(--accent2-light); border: 1px solid #fde68a;
-      color: var(--accent2); font-size: .75rem; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase;
-      padding: .3rem .9rem; border-radius: 50px; margin-bottom: 1rem;
-    }
-
-    /* ── SAVINGS ── */
-    #savings { padding: 7rem 1.5rem; border-top: 1px solid var(--border); background: var(--surface); }
-    .bill-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
-    .bill-copy p { color: var(--muted); margin-bottom: 1.2rem; }
-    .savings-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: var(--accent-light); border: 1px solid #86efac;
-      color: var(--accent); font-size: .9rem; font-weight: 600;
-      padding: .5rem 1.1rem; border-radius: 50px; margin-bottom: 1.8rem;
-    }
-    .bill-placeholder {
-      background: var(--surface2); border: 2px dashed var(--border);
-      border-radius: var(--radius); aspect-ratio: 3/4;
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: .8rem; color: var(--muted);
-      font-size: .9rem; text-align: center; padding: 2rem;
-    }
-    .bill-placeholder .icon { font-size: 3rem; opacity: .4; }
-
-    /* ── TESTIMONIALS ── */
-    #testimonials { padding: 7rem 1.5rem; background: var(--bg); border-top: 1px solid var(--border); }
-    .testimonials-header { max-width: 560px; margin-bottom: 3rem; }
-    .testimonials-header p { color: var(--muted); margin-top: .8rem; }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .testimonial-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      display: flex; flex-direction: column; gap: 1.2rem;
-      position: relative; overflow: hidden;
-      transition: border-color .25s, transform .25s, box-shadow .25s;
-    }
-    .testimonial-card:hover { border-color: var(--accent3); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(37,99,235,0.08); }
-    .testimonial-card::before { content: '\201C'; position: absolute; top: -8px; right: 16px; font-family: var(--ff-display); font-size: 5rem; color: var(--accent3-light); line-height: 1; pointer-events: none; }
-    .testimonial-stars { color: #f59e0b; font-size: .9rem; letter-spacing: .05em; }
-    .testimonial-body { color: var(--muted); font-size: .94rem; line-height: 1.75; flex: 1; }
-    .testimonial-author { display: flex; align-items: center; gap: .75rem; padding-top: 1rem; border-top: 1px solid var(--border); }
-    .testimonial-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--accent3-light); border: 2px solid var(--accent3); display: flex; align-items: center; justify-content: center; font-family: var(--ff-display); font-size: 1rem; color: var(--accent3); flex-shrink: 0; }
-    .testimonial-meta { display: flex; flex-direction: column; }
-    .testimonial-name { font-weight: 600; font-size: .92rem; color: var(--text); }
-    .testimonial-tag { font-size: .78rem; color: var(--muted); }
-    .testimonial-card.featured { border-color: var(--accent3); background: linear-gradient(160deg, #f0f7ff 0%, var(--surface) 60%); }
-    @media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; } }
-
-    /* ── WHY TOU ── */
-    #why { padding: 7rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); }
-
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-    .why-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2rem;
-      transition: border-color .25s, transform .25s;
+      border-radius: var(--radius); padding: 1.4rem 1.6rem;
+      display: flex; gap: 1.2rem; align-items: flex-start;
       box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
-    .why-card:hover { border-color: var(--accent3); transform: translateY(-3px); }
-    .why-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
-    .why-card h3 { font-family: var(--ff-display); font-size: 1.2rem; margin-bottom: .5rem; color: var(--text); }
-    .why-card p { font-size: .93rem; color: var(--muted); }
-    .learn-more-link { display: inline-flex; align-items: center; gap: .4rem; margin-top: 2.5rem; font-weight: 600; color: var(--accent3); text-decoration: none; font-size: .95rem; }
-    .learn-more-link:hover { text-decoration: underline; }
-
-    /* ── CONTACT ── */
-    #contact { padding: 7rem 1.5rem; border-top: 1px solid var(--border); background: var(--surface); }
-    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .contact-info p { color: var(--muted); margin-top: .8rem; max-width: 420px; }
-    .contact-promise { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
-    .promise-item { display: flex; align-items: flex-start; gap: .8rem; }
-    .promise-check {
-      width: 22px; height: 22px; border-radius: 50%;
-      background: var(--accent-light); border: 1px solid #86efac;
+    .step-n {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--accent3); color: #fff;
+      font-family: var(--ff-display); font-size: 1.1rem;
       display: flex; align-items: center; justify-content: center;
-      font-size: .75rem; color: var(--accent); flex-shrink: 0; margin-top: .85rem;
+      flex-shrink: 0;
     }
-    .promise-item p { font-size: .93rem; color: var(--muted); }
-    form { display: flex; flex-direction: column; gap: 1.1rem; }
-    label { font-size: .82rem; font-weight: 600; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; display: block; margin-bottom: .35rem; }
-    input, textarea, select {
-      width: 100%; background: var(--bg); border: 1px solid var(--border);
-      border-radius: 10px; color: var(--text); font-family: var(--ff-body);
-      font-size: .98rem; padding: .8rem 1rem; outline: none;
-      transition: border-color .2s, box-shadow .2s;
+    .step-simple h3 { font-family: var(--ff-display); font-size: 1.1rem; color: var(--text); margin-bottom: .25rem; }
+    .step-simple p { color: var(--muted); font-size: .93rem; margin: 0; }
+
+    /* ── TESTIMONIALS ── */
+    .reviews { padding: 4.5rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); }
+    .reviews-inner { max-width: 860px; margin: 0 auto; }
+    .reviews h2 { font-family: var(--ff-display); font-size: clamp(1.7rem, 3.5vw, 2.6rem); color: var(--text); margin-bottom: .5rem; }
+    .reviews-sub { color: var(--muted); font-size: .95rem; margin-bottom: 2rem; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .review-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.6rem;
+      position: relative;
     }
-    input:focus, textarea:focus, select:focus { border-color: var(--accent3); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-    textarea { resize: vertical; min-height: 110px; }
+    .review-card.featured { background: #f0f7ff; border-color: var(--accent3); }
+    .stars { color: #f59e0b; font-size: .95rem; margin-bottom: .75rem; letter-spacing: .05em; }
+    .review-text { color: var(--muted); font-size: .93rem; line-height: 1.75; margin-bottom: 1rem; }
+    .review-author { display: flex; align-items: center; gap: .7rem; border-top: 1px solid var(--border); padding-top: .85rem; }
+    .review-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--accent3-light); border: 1.5px solid var(--accent3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-display); font-size: .95rem; color: var(--accent3);
+      flex-shrink: 0;
+    }
+    .review-name { font-weight: 600; font-size: .88rem; color: var(--text); }
+    .review-tag { font-size: .76rem; color: var(--muted); }
+
+    /* ── REAL RESULTS ── */
+    .results { padding: 4.5rem 1.5rem; background: var(--bg); border-top: 1px solid var(--border); }
+    .results-inner { max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
+    .results h2 { font-family: var(--ff-display); font-size: clamp(1.7rem, 3.5vw, 2.6rem); color: var(--text); margin-bottom: .8rem; }
+    .results p { color: var(--muted); font-size: .98rem; margin-bottom: 1rem; line-height: 1.7; }
+    .results strong { color: var(--text); }
+    .results img { width: 100%; border-radius: var(--radius); display: block; }
+    @media (max-width: 640px) { .results-inner { grid-template-columns: 1fr; gap: 2rem; } }
+
+    /* ── PRICING ── */
+    .pricing { padding: 4.5rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); }
+    .pricing-inner { max-width: 520px; margin: 0 auto; text-align: center; }
+    .pricing h2 { font-family: var(--ff-display); font-size: clamp(1.7rem, 3.5vw, 2.6rem); color: var(--text); margin-bottom: .5rem; }
+    .pricing-sub { color: var(--muted); font-size: .98rem; margin-bottom: 2rem; }
+    .price-card {
+      background: var(--surface);
+      border: 2px solid var(--accent3);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(37,99,235,.1);
+      text-align: left;
+    }
+    .price-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent3), var(--accent)); }
+    .intro-badge {
+      display: inline-block; background: var(--accent2-light); border: 1px solid #fde68a;
+      color: var(--accent2); font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: .28rem .85rem; border-radius: 50px;
+      margin-bottom: .85rem;
+    }
+    .price-num { font-family: var(--ff-display); font-size: 4rem; color: var(--accent3); line-height: 1; }
+    .price-num sup { font-size: 2rem; vertical-align: super; }
+    .price-freq { color: var(--muted); font-size: .9rem; margin-bottom: 1.5rem; }
+    .features { list-style: none; display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.75rem; }
+    .features li { display: flex; gap: .6rem; font-size: .93rem; color: var(--muted); }
+    .features li .chk { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .btn-price {
+      display: block; background: var(--accent3); color: #fff;
+      font-family: var(--ff-body); font-weight: 700; font-size: 1.05rem;
+      padding: .95rem 2rem; border-radius: 50px; text-decoration: none;
+      text-align: center; transition: background .2s, transform .15s;
+    }
+    .btn-price:hover { background: var(--navy); transform: translateY(-2px); }
+    .guarantee-note { text-align: center; margin-top: 1rem; font-size: .82rem; color: var(--muted); }
+    .guarantee-note strong { color: var(--accent); }
+
+    /* ── ABOUT ── */
+    .about { padding: 4.5rem 1.5rem; background: var(--bg); border-top: 1px solid var(--border); }
+    .about-inner { max-width: 640px; margin: 0 auto; display: flex; gap: 2rem; align-items: flex-start; }
+    .about-badge {
+      width: 90px; height: 90px; border-radius: 50%; flex-shrink: 0;
+      background: var(--accent3-light); border: 2px solid var(--accent3);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .about-badge .yrs { font-family: var(--ff-display); font-size: 2rem; color: var(--accent3); line-height: 1; }
+    .about-badge .yrs-lbl { font-size: .55rem; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; text-align: center; }
+    .about-copy h2 { font-family: var(--ff-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text); margin-bottom: .7rem; line-height: 1.2; }
+    .about-copy p { color: var(--muted); font-size: .95rem; line-height: 1.75; }
+    @media (max-width: 540px) { .about-inner { flex-direction: column; } }
+
+    /* ── FAQ ── */
+    .faq { padding: 4.5rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); }
+    .faq-inner { max-width: 640px; margin: 0 auto; }
+    .faq h2 { font-family: var(--ff-display); font-size: clamp(1.7rem, 3.5vw, 2.4rem); color: var(--text); margin-bottom: 1.5rem; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: .75rem; background: var(--bg); }
+    .faq-q { width: 100%; text-align: left; background: none; border: none; padding: 1.1rem 1.4rem; font-family: var(--ff-body); font-size: .98rem; font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .faq-q:hover { background: var(--surface2); }
+    .faq-q .arr { color: var(--accent3); font-size: 1rem; transition: transform .25s; flex-shrink: 0; }
+    .faq-q.open .arr { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 1.4rem 1.1rem; color: var(--muted); font-size: .93rem; line-height: 1.75; }
+    .faq-a.open { display: block; }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      padding: 5rem 1.5rem; text-align: center;
+    }
+    .final-cta h2 { font-family: var(--ff-display); font-size: clamp(2rem, 5vw, 3.5rem); color: #fff; margin-bottom: .8rem; line-height: 1.1; }
+    .final-cta h2 em { font-style: italic; color: #86efac; }
+    .final-cta p { color: #94a3b8; font-size: 1rem; max-width: 460px; margin: 0 auto 2rem; }
+    .btn-final {
+      background: var(--accent); color: #fff;
+      font-family: var(--ff-body); font-weight: 700; font-size: 1.15rem;
+      padding: 1rem 2.8rem; border-radius: 50px; text-decoration: none;
+      display: inline-block; transition: background .2s, transform .15s;
+    }
+    .btn-final:hover { background: #15803d; transform: translateY(-2px); }
 
     /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border); padding: 2.5rem 1.5rem;
-      text-align: center; color: var(--muted); font-size: .85rem;
-      background: var(--surface);
-    }
+    footer { border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; color: var(--muted); font-size: .85rem; background: var(--surface); }
     footer a { color: var(--muted); }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── MOBILE ── */
-    @media (max-width: 720px) {
-      .steps { grid-template-columns: 1fr; }
-      .trust-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .bill-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .pricing-wrap { grid-template-columns: 1fr; }
-      .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
-      .hero { padding: 7rem 1.25rem 4rem; }
-      .hero-stat-row { gap: 1.5rem; }
-      .stat-num { font-size: 2rem; }
-    }
-    @media (max-width: 480px) {
-      .hero-actions { flex-direction: column; align-items: stretch; }
-      .hero-actions a { text-align: center; }
-      .rate-pills { flex-direction: column; }
-    }
-  </style>
-  <style>
-    /* Force light mode on all browsers regardless of OS dark mode setting */
-    html, body { background-color: #f4f6fa !important; color: #1a1f2e !important; }
-    * { color-scheme: light !important; }
+    .footer-disclaimer { font-size: .76rem; color: var(--muted); max-width: 740px; margin: 1.2rem auto 0; line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -392,506 +325,285 @@
 <!-- NAV -->
 <nav>
   <a class="logo" href="index.html">TOU<span>SmartRate</span></a>
-  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+  <button class="nav-toggle" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
   <div class="nav-links">
-    <a href="#how">How It Works</a>
     <a href="what-is-tou.html">What Is TOU?</a>
     <a href="about-the-service.html">The Service</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#testimonials">Reviews</a>
-    <a href="#contact">Ask a Question</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
     <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" class="nav-cta" target="_blank">Get My Analysis</a>
   </div>
 </nav>
 
+<!-- STICKY CTA BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-text">
+    <strong>Find out if you're overpaying Wake Electric.</strong>
+    15% savings guaranteed — or your money back.
+  </div>
+  <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" class="sticky-cta" target="_blank">Get My Analysis — $49/yr</a>
+</div>
+
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">⚡ Currently serving Wake Electric Cooperative members</div>
-  <h1>I'll Save You <em>15% or More</em><br>on Your Electric Bill.*</h1>
+  <div class="hero-badge">⚡ Wake Electric Cooperative members only</div>
+  <h1>You're Probably<br><em>Overpaying</em> Your<br>Electric Bill.</h1>
   <p class="hero-sub">
-    Guaranteed — or your money back. I'll analyze your actual Wake Electric usage data and show you exactly how much you're leaving on the table every month.
+    Most Wake Electric customers are on the wrong rate plan and don't know it.
+    I'll look at your actual data and tell you <strong>exactly</strong> how much you're leaving on the table — in 48 hours.
   </p>
-  <div class="hero-actions">
-    <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" class="btn-primary" target="_blank">Get My Analysis — $49/yr</a>
-    <a href="#how" class="btn-secondary">See How It Works</a>
+  <div class="hero-cta-wrap">
+    <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" class="btn-hero" target="_blank">Find Out What I'm Overpaying →</a>
+    <span class="hero-guarantee"><strong>15% savings guaranteed</strong> — or your money back, no questions asked.*</span>
   </div>
-  <div class="hero-stat-row">
-    <div class="stat">
-      <div class="stat-num">$289</div>
-      <div class="stat-label">Avg. Annual Savings</div>
+  <div class="hero-proof-row">
+    <div class="hero-stat">
+      <div class="num">$289</div>
+      <div class="lbl">Avg. Annual Savings</div>
     </div>
-    <div class="stat">
-      <div class="stat-num">15%*</div>
-      <div class="stat-label">Guaranteed or Free</div>
+    <div class="hero-stat">
+      <div class="num">15%*</div>
+      <div class="lbl">Guaranteed or Free</div>
     </div>
-    <div class="stat">
-      <div class="stat-num">15+</div>
-      <div class="stat-label">Years Industry Experience</div>
+    <div class="hero-stat">
+      <div class="num">15+</div>
+      <div class="lbl">Years Energy Experience</div>
     </div>
-    <a href="#testimonials" class="stat stat-reviews">
-      <div class="stat-num">★★★★★</div>
-      <div class="stat-label">5-Star Reviews</div>
-    </a>
+    <div class="hero-stat">
+      <div class="num">★★★★★</div>
+      <div class="lbl">5-Star Reviews</div>
+    </div>
   </div>
 </section>
 
-<!-- TRUST -->
-<section id="trust">
-  <div class="container">
-    <div class="trust-inner reveal">
-      <div>
-        <div class="trust-badge-circle">
-          <span class="years">15+</span>
-          <span class="years-label">Yrs. in<br>Energy</span>
-        </div>
-      </div>
-      <div class="trust-copy">
-        <div class="section-label">Who I Am</div>
-        <h2>Hi, I'm Marc — and this is<br>my area of expertise.</h2>
-        <p style="margin-top:.8rem;">
-          I've spent over 15 years working directly inside the energy industry — analyzing interval data, evaluating utility rate structures, and working with Time-of-Use programs professionally. This isn't a tool I built to enter a market I don't understand. It's a service I built because I kept seeing the same thing: households paying more than they need to, simply because nobody ever ran the numbers for them.
-        </p>
-        <p style="margin-top:.8rem;">
-          When I give you a recommendation, it's backed by a decade and a half of this exact work — not a generic algorithm.
-        </p>
-      </div>
-    </div>
-    <div class="info-banner green reveal">
-      <div class="avail-icon">📍</div>
-      <div class="avail-text">
-        <strong>Currently available for Wake Electric Cooperative members</strong>
-        <p>I'm currently serving residential customers of Wake Electric Cooperative. Submit your info below and I'll reach out when your provider is covered.</p>
-      </div>
-    </div>
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="problem-inner">
+    <div class="section-label">Here's the problem</div>
+    <h2>Wake Electric offers a rate plan<br>that could save you real money.</h2>
+    <p>
+      It's called a Time-of-Use rate. Energy is cheaper for 22 out of 24 hours a day.
+      But most people don't know it exists — and those who've heard of it have no idea
+      if it's actually right for their household. <strong>That's exactly what I figure out.</strong>
+    </p>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section id="how">
-  <div class="container">
-    <div class="how-header reveal">
-      <div class="section-label">The Process</div>
-      <h2>Simple. Transparent.<br>I Do the Heavy Lifting.</h2>
-      <p>Four steps from sign-up to knowing exactly where you stand.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="step-num">01</div>
-        <h3>Pull Your Data</h3>
-        <p>Log into Wake Electric's member portal and download your hourly usage CSV files. I'll walk you through exactly how to find them — it takes about 5 minutes.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">02</div>
-        <h3>Send Them to Me</h3>
-        <p>Email your CSV files directly to me. That's it. No account setup, no app to install, no complicated steps.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">03</div>
-        <h3>I Run the Numbers</h3>
-        <p>I process your full year of hourly interval data — calculating exactly what you would have paid under the TOU rate vs. what you actually paid on the flat rate.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">04</div>
-        <h3>You Get a Clear Answer</h3>
-        <p>I send you a personalized visual report and a plain-English summary: switch or don't switch, here's what it means for your bill, and here's how to act on it if you choose to.</p>
-      </div>
-    </div>
-    <div class="info-banner blue reveal" style="margin-top:2.5rem;">
-      <div class="avail-icon">📋</div>
-      <div class="avail-text">
-        <strong>Worth knowing before you switch</strong>
-        <p>If you switch to TOU and decide within the first year it's not for you, Wake Electric charges a $20 fee to return to the standard rate. That's exactly why it's worth running the numbers first.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PEAK CHART -->
-<section id="peak">
-  <div class="container">
-    <div class="peak-header reveal">
-      <div class="section-label">Rate Structure</div>
-      <h2>When Does the Price Change?</h2>
-      <p>On-peak hours are just two hours a day. Whether those hours align with your household's routines is the entire question — and the answer is different for every home.</p>
-    </div>
-    <div class="season-tabs">
-      <button class="tab-btn active" onclick="setSeason('winter')">❄️ Winter (Nov–Mar)</button>
-      <button class="tab-btn" onclick="setSeason('summer')">☀️ Summer (Apr–Oct)</button>
-    </div>
-    <div class="chart-wrap reveal">
-      <div class="chart-legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div>On-Peak Zone</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#2563eb"></div>Off-Peak Zone</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#16a34a"></div>Typical Load</div>
-      </div>
-      <canvas id="loadChart" style="max-height:280px"></canvas>
-      <div style="margin-top:1rem;">
-        <p id="peak-window-label" style="font-size:.85rem; color:var(--muted);"></p>
-      </div>
-    </div>
-    <div class="rate-pills" style="margin-top:1.4rem;">
-      <div class="rate-pill on">🔴 On-Peak: 24.0¢/kWh</div>
-      <div class="rate-pill off">🔵 Off-Peak: 8.0¢/kWh</div>
-      <div class="rate-pill std">🟢 Standard Flat Rate: 13.0¢/kWh</div>
-    </div>
-    <a href="what-is-tou.html" class="learn-more-link reveal">Learn more about how TOU rates work →</a>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="pricing-header reveal">
-      <div class="section-label">Pricing</div>
-      <h2>One Low Annual Fee.<br>Ongoing Peace of Mind.</h2>
-      <p>Your energy usage changes. Rates change. Your subscription means you're never flying blind — I'll re-run your analysis every year automatically.</p>
-    </div>
-    <div class="pricing-wrap reveal">
-      <div class="price-card featured">
-        <div class="founding-badge">⭐ Limited-Time Introductory Rate</div>
-        <div class="price-card-label">Annual Subscription</div>
-        <h3>Full TOU Analysis</h3>
-        <div style="display:flex;align-items:baseline;gap:.6rem;margin:1rem 0 .1rem;">
-          <div class="price-amount"><sup>$</sup>49</div>
+<section class="how">
+  <div class="how-inner">
+    <div class="section-label">How it works</div>
+    <h2>Four steps. I do the hard part.</h2>
+    <div class="steps-simple">
+      <div class="step-simple">
+        <div class="step-n">1</div>
+        <div>
+          <h3>You subscribe ($49/yr)</h3>
+          <p>Takes two minutes. You'll get a welcome email with simple instructions.</p>
         </div>
-        <div class="price-period">per year — limited-time introductory price</div>
-        <div class="price-once">Includes initial analysis + annual review · Cancel anytime</div>
-        <ul class="price-features">
-          <li><span class="chk">✓</span> Full year of hourly interval data analyzed</li>
-          <li><span class="chk">✓</span> Personalized visual report (dark &amp; light theme)</li>
-          <li><span class="chk">✓</span> Plain-English recommendation: switch or don't</li>
-          <li><span class="chk">✓</span> Load shift scenario showing additional savings potential</li>
-          <li><span class="chk">✓</span> Annual re-analysis — rates and usage change over time</li>
-          <li><span class="chk">✓</span> Direct access to Marc for follow-up questions</li>
-          <li><span class="chk">✓</span> 15% savings guaranteed or your money back*</li>
-        </ul>
-        <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" class="btn-primary" target="_blank">Get Started →</a>
       </div>
-      <div class="price-card">
-        <div class="price-card-label">Why Annual?</div>
-        <h3>Your Bill Isn't Static</h3>
-        <p style="color:var(--muted); font-size:.95rem; margin-bottom:1.2rem;">A one-time analysis tells you where you stand today. But a lot can change in a year:</p>
-        <ul class="price-features">
-          <li><span class="chk">→</span> Wake Electric may adjust their TOU or flat rates</li>
-          <li><span class="chk">→</span> You might add an EV, heat pump, or solar panels</li>
-          <li><span class="chk">→</span> Seasonal usage patterns shift as your household changes</li>
-          <li><span class="chk">→</span> A switch that wasn't worth it last year might be this year</li>
-        </ul>
-        <div class="info-banner amber" style="margin-top:1.5rem;">
-          <div class="avail-icon">🔄</div>
-          <div class="avail-text">
-            <strong>Automatic annual review</strong>
-            <p>Every year, I'll re-run your analysis with fresh data and send you an updated recommendation. No action needed on your part.</p>
+      <div class="step-simple">
+        <div class="step-n">2</div>
+        <div>
+          <h3>Download your usage data</h3>
+          <p>Log into Wake Electric's member portal and export your hourly CSV files. Takes about 5 minutes — I'll walk you through it.</p>
+        </div>
+      </div>
+      <div class="step-simple">
+        <div class="step-n">3</div>
+        <div>
+          <h3>Email the files to me</h3>
+          <p>That's it. No app, no account. Just attach and send.</p>
+        </div>
+      </div>
+      <div class="step-simple">
+        <div class="step-n">4</div>
+        <div>
+          <h3>Get your answer in 48 hours</h3>
+          <p>You'll receive a full visual report and a plain-English verdict: switch or don't, and exactly what it means for your bill.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-inner">
+    <div class="section-label">What customers say</div>
+    <h2>Real feedback from<br>Wake Electric members.</h2>
+    <p class="reviews-sub">These are actual responses from neighbors — in their own words.</p>
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"I had no idea this option even existed until Marc posted about it and ran our assessment. Based on our typical usage, we could have been saving quite a bit. My next step is smart thermostats to shift away from peak hours and save even more."</p>
+        <div class="review-author">
+          <div class="review-avatar">W</div>
+          <div>
+            <div class="review-name">Wake Electric Member</div>
+            <div class="review-tag">Homeowner · Neighbor referral</div>
           </div>
         </div>
       </div>
+
+      <div class="review-card featured">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"As someone with experience in energy audits, I can confidently say this report stands above the rest. It's an exceptional value — easily one of the best investments you can make with energy costs continuing to rise. Great work, Marc."</p>
+        <div class="review-author">
+          <div class="review-avatar">E</div>
+          <div>
+            <div class="review-name">Energy Industry Professional</div>
+            <div class="review-tag">Energy audits &amp; management</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Just had my usage reviewed and I'm glad I did. Based on my actual data, switching to TOU could save me money without changing a single thing in my routine. Everything was explained clearly. Definitely worth checking out."</p>
+        <div class="review-author">
+          <div class="review-avatar">W</div>
+          <div>
+            <div class="review-name">Wake Electric Member</div>
+            <div class="review-tag">Homeowner · Organic referral</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- REAL RESULTS -->
-<section id="savings">
-  <div class="container">
-    <div class="bill-layout">
-      <div class="bill-copy reveal">
-        <div class="section-label">Real Results</div>
-        <h2>Proof Is in the Bill</h2>
-        <div class="savings-badge">✦ Actual Wake Electric Member</div>
-        <p>
-          This is a real Wake Electric bill — with account details removed — showing TOU savings printed directly on the statement. That line is exactly what I surface for every customer I work with.
-        </p>
-        <p>
-          <strong style="color:var(--text);">$134.34 saved in a single month. $238.23 saved year-to-date.</strong> No solar panels. No new appliances. No major lifestyle overhaul. Just the right rate plan matched to an existing usage pattern.
-        </p>
-        <p>
-          Your number could be higher, lower, or zero. But you won't know until someone actually looks at your data.
-        </p>
-        <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" class="btn-primary" style="margin-top:.5rem;" target="_blank">Find Out What I'd Save</a>
-      </div>
-      <div class="bill-image-wrap reveal">
-        <img src="images/sample-bill-savings.jpg"
-             alt="Wake Electric bill showing $134.34 monthly TOU savings"
-             loading="lazy"
-             style="width:100%; display:block; border-radius:var(--radius);" />
-      </div>
+<section class="results">
+  <div class="results-inner">
+    <div>
+      <div class="section-label">Real results</div>
+      <h2>Proof is on the bill.</h2>
+      <p>This is a real Wake Electric bill — account details removed — showing TOU savings printed directly on the statement.</p>
+      <p><strong>$134.34 saved in a single month. $238.23 saved year-to-date.</strong> No solar. No new appliances. Just the right rate plan.</p>
+      <p>Your number could be higher, lower, or zero. But you won't know until someone looks at your data.</p>
+      <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" class="btn-price" style="margin-top:.5rem;" target="_blank">Find Out What I'd Save →</a>
+    </div>
+    <div>
+      <img src="images/sample-bill-savings.jpg" alt="Wake Electric bill showing $134.34 monthly TOU savings" loading="lazy" />
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="container">
-    <div class="testimonials-header reveal">
-      <div class="section-label">What Customers Are Saying</div>
-      <h2>Real feedback from<br>Wake Electric members.</h2>
-      <p>These are actual responses from neighbors who've had their usage analyzed — in their own words.</p>
+<!-- PRICING -->
+<section class="pricing">
+  <div class="pricing-inner">
+    <div class="section-label">Pricing</div>
+    <h2>One price. Everything included.</h2>
+    <p class="pricing-sub">Initial analysis + automatic annual re-analysis. Cancel anytime.</p>
+    <div class="price-card">
+      <div class="intro-badge">⭐ Limited-time introductory rate</div>
+      <div class="price-num"><sup>$</sup>49</div>
+      <div class="price-freq">per year &nbsp;·&nbsp; Cancel anytime</div>
+      <ul class="features">
+        <li><span class="chk">✓</span> Full year of hourly data analyzed</li>
+        <li><span class="chk">✓</span> Personalized visual report</li>
+        <li><span class="chk">✓</span> Plain-English recommendation: switch or don't</li>
+        <li><span class="chk">✓</span> Load shift scenario (extra savings potential)</li>
+        <li><span class="chk">✓</span> Annual re-analysis — rates and usage change</li>
+        <li><span class="chk">✓</span> Direct access to Marc for questions</li>
+        <li><span class="chk">✓</span> 15% savings guaranteed or your money back*</li>
+      </ul>
+      <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" class="btn-price" target="_blank">Get Started — $49/yr →</a>
     </div>
-    <div class="testimonials-grid">
+    <p class="guarantee-note"><strong>15% guaranteed or 100% refund.</strong> No risk.</p>
+  </div>
+</section>
 
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-body">
-          "Thanks, Marc — this was really helpful! Based on our typical usage patterns, we could have been saving quite a bit with TOU, but I had no idea the option even existed until Marc posted about it and ran our assessment. My next step is to invest in smart thermostats to program our HVAC and squeeze out even more savings by shifting away from peak hours."
-        </p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">W</div>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Wake Electric Member</span>
-            <span class="testimonial-tag">Homeowner · Neighbor referral</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-body">
-          "Just had my energy usage reviewed and I'm genuinely glad I did. Based on my actual usage data, switching to a Time-of-Use plan could save me money without changing a single thing in my routine. Everything was explained clearly and the report made it easy to understand exactly where my money is going. Definitely worth checking out if you're looking to trim a little off your monthly bill."
-        </p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">W</div>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Wake Electric Member</span>
-            <span class="testimonial-tag">Homeowner · Organic referral</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card featured reveal">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-body">
-          "I can personally attest to the value here. The analysis is detailed, thorough, and clearly well thought out. As someone with experience in energy audits and energy management, I can confidently say this report stands above the rest. It's an exceptional value — easily one of the best investments you can make, especially with energy costs continuing to rise. A smart, practical way to stay ahead of it. Great work, Marc."
-        </p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">E</div>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Energy Industry Professional</span>
-            <span class="testimonial-tag">Energy audits &amp; management</span>
-          </div>
-        </div>
-      </div>
-
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-inner">
+    <div class="about-badge">
+      <span class="yrs">15+</span>
+      <span class="yrs-lbl">Yrs in<br>Energy</span>
+    </div>
+    <div class="about-copy">
+      <h2>Hi, I'm Marc. This is my specialty.</h2>
+      <p>I've spent over 15 years working directly inside the energy industry — analyzing interval data, evaluating utility rate structures, and working with Time-of-Use programs professionally. I built this because I kept seeing the same thing: households paying more than they need to, because nobody ever ran the numbers for them.</p>
+      <p style="margin-top:.75rem;">When I give you a recommendation, it's backed by 15 years of this exact work — not a generic algorithm.</p>
     </div>
   </div>
 </section>
 
-<!-- WHY TOU -->
-<section id="why">
-  <div class="container">
-    <div class="reveal" style="max-width:560px; margin-bottom:1rem;">
-      <div class="section-label">The Basics</div>
-      <h2>What Makes TOU<br>Different from a Flat Rate?</h2>
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="section-label">Common questions</div>
+    <h2>Before you sign up.</h2>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What if TOU isn't right for me? <span class="arr">▼</span></button>
+      <div class="faq-a">I'll tell you clearly that it's not the right move and explain why. The analysis is worth running regardless — knowing you're already on the right plan has value too. I'd rather give you an honest "stay put" than a false recommendation that costs you money.</div>
     </div>
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <span class="why-icon">🕐</span>
-        <h3>The Clock Matters</h3>
-        <p>Wake Electric's TOU rate charges 24.0¢/kWh during on-peak hours and just 8.0¢/kWh the rest of the time. Compare that to the standard flat rate of 13.0¢/kWh all day. If your heavy usage happens off-peak, you come out ahead.</p>
-      </div>
-      <div class="why-card reveal">
-        <span class="why-icon">📅</span>
-        <h3>Two Short Windows, All Year</h3>
-        <p>In winter (Nov–Mar), on-peak is 6–8 AM. In summer (Apr–Oct), it's 4–6 PM. That's just two hours a day. Households whose routines keep them off-peak during those windows often see immediate savings without changing a thing.</p>
-      </div>
-      <div class="why-card reveal">
-        <span class="why-icon">📊</span>
-        <h3>Your Interval Data Is the Key</h3>
-        <p>Your smart meter records usage every hour. That granular history is what I use to model your exact bill under each rate — not estimates, not averages, but your actual usage recalculated against each pricing schedule.</p>
-      </div>
-      <div class="why-card reveal">
-        <span class="why-icon">🔄</span>
-        <h3>Not Everyone Benefits — I'll Tell You Honestly</h3>
-        <p>TOU isn't a universal win. If your household runs heavy loads during peak windows, you may genuinely be better off on the flat rate. I run the real numbers and give you a straight answer either way.</p>
-      </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What is the 15% guarantee exactly? <span class="arr">▼</span></button>
+      <div class="faq-a">If your calculated savings on a TOU rate plan through WEMC is not equal to or greater than 15% of your most recent 12 months of energy charges, your $49 fee is refunded 100%. No forms, no questions asked.</div>
     </div>
-    <a href="what-is-tou.html" class="learn-more-link reveal">Deep dive: how TOU rates work and who benefits →</a>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How do I actually switch to TOU if I want to? <span class="arr">▼</span></button>
+      <div class="faq-a">You contact Wake Electric directly — I'm not affiliated with them and can't make changes to your account. Call 800.474.6300, or email information@wemc.com with your name, account number, daytime phone, and email address.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Is there a fee to switch back if I don't like TOU? <span class="arr">▼</span></button>
+      <div class="faq-a">Yes — if you switch to TOU and want to return to the standard flat rate within the first year, Wake Electric charges a $20 fee. That's exactly why it's worth running the analysis before you commit.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Can I cancel my subscription? <span class="arr">▼</span></button>
+      <div class="faq-a">Yes, anytime. Your analysis and report are yours to keep regardless. If you cancel, your annual renewal simply won't process the following year.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What if I don't have a full year of data? <span class="arr">▼</span></button>
+      <div class="faq-a">The analysis works with whatever data you have. Partial-year analyses are still useful — I'll be upfront about what the data shows and what it doesn't.</div>
+    </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-wrap">
-      <div class="contact-info reveal">
-        <div class="section-label">Have Questions?</div>
-        <h2>Ask Before<br>You Commit</h2>
-        <p>If you're ready to get your analysis, <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" target="_blank" style="color:var(--accent3); font-weight:600;">head straight to the sign-up page →</a> — it takes about two minutes.</p>
-        <p style="margin-top:.8rem;">If you have questions first, I'm happy to answer them. Use the form and I'll get back to you personally, usually within one business day.</p>
-        <div class="contact-promise" style="margin-top:2rem;">
-          <div class="promise-item">
-            <div class="promise-check">✓</div>
-            <p>Not sure if TOU is right for your household? Ask me.</p>
-          </div>
-          <div class="promise-item">
-            <div class="promise-check">✓</div>
-            <p>Not sure how to pull your interval data from WEMC's portal? Ask me.</p>
-          </div>
-          <div class="promise-item">
-            <div class="promise-check">✓</div>
-            <p>Questions about what the analysis covers or how it works? Ask me.</p>
-          </div>
-          <div class="promise-item">
-            <div class="promise-check">✓</div>
-            <p>Straight answers — no sales pressure, no follow-up campaign.</p>
-          </div>
-        </div>
-        <div class="info-banner green" style="margin-top:2rem;">
-          <div class="avail-icon">⚡</div>
-          <div class="avail-text">
-            <strong>Ready to get your analysis?</strong>
-            <p>Skip the form and go straight to sign-up. <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" target="_blank" style="color:var(--accent); font-weight:600;">Get started — $49/yr →</a> Cancel anytime.</p>
-          </div>
-        </div>
-      </div>
-      <div class="reveal">
-        <form action="https://formspree.io/f/xqeyyvjy" method="POST" onsubmit="handleSubmit(event)">
-          <div>
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
-          </div>
-          <div>
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
-          </div>
-          <div>
-            <label for="message">What's your question?</label>
-            <textarea id="message" name="message" placeholder="e.g. I'm not sure how to download my data from the WEMC portal, or I charge an EV at home and want to know if that changes the math…" required></textarea>
-          </div>
-          <button type="submit" class="btn-primary" style="width:100%; text-align:center;">Send My Question →</button>
-        </form>
-      </div>
-    </div>
-  </div>
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2>Stop guessing.<br><em>Know</em> in 48 hours.</h2>
+  <p>I'll look at your actual data and give you a straight answer. If you don't save 15%, you don't pay.</p>
+  <a href="https://buy.stripe.com/14A5kE6zRbmP2G405mbEA02" class="btn-final" target="_blank">Get My Analysis — $49/yr →</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <p>&copy; 2026 TOUSmartRate. All rights reserved.</p>
-  <p style="margin-top:.4rem;">Not affiliated with Wake Electric Cooperative or any utility company.</p>
-  <p style="margin-top:1.2rem; font-size:.78rem; color:var(--muted); max-width:760px; margin-left:auto; margin-right:auto; line-height:1.6;">
-    *15% Off Guarantee — If your calculated savings on a TOU rate plan through WEMC is not equal to or greater than 15% of your most recent 12 months of energy charges, your analysis fee will be refunded 100%.
-  </p>
+  <p style="margin-top:.4rem;"><a href="what-is-tou.html">What Is TOU?</a> &nbsp;·&nbsp; <a href="about-the-service.html">The Service</a> &nbsp;·&nbsp; Not affiliated with Wake Electric Cooperative.</p>
+  <p class="footer-disclaimer">*15% Off Guarantee — If your calculated savings on a TOU rate plan through WEMC is not equal to or greater than 15% of your most recent 12 months of energy charges, your analysis fee will be refunded 100%.</p>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('open');
+  });
 
-  // Load curve — linear x-axis so peak band aligns precisely with tick marks
-  // Data represents hourly averages; plotted at end-hour (start+1), x=1..24.
-  // x=0 mirrors x=24 (midnight) to close the curve cleanly.
-  const load  = [0.8,0.6,0.5,0.5,0.6,0.9,1.4,2.2,1.9,1.5,1.4,1.5,1.6,1.5,1.7,2.0,2.6,3.4,3.9,3.2,2.7,2.1,1.6,1.1];
-  const seasons = {
-    winter: { peakStart:6,  peakEnd:8,  label:'Winter on-peak: 6:00 AM – 8:00 AM · Off-peak: all other hours · On-peak rate is 3× higher than off-peak.' },
-    summer: { peakStart:16, peakEnd:18, label:'Summer on-peak: 4:00 PM – 6:00 PM · Off-peak: all other hours · On-peak rate is 3× higher than off-peak.' }
-  };
-  let currentSeason = 'winter';
-  let chartInstance = null;
-
-  const peakBandPlugin = {
-    id: 'peakBand',
-    beforeDatasetsDraw(chart) {
-      const { ctx, chartArea, scales } = chart;
-      if (!chartArea) return;
-      const s = seasons[currentSeason];
-      const x1 = scales.x.getPixelForValue(s.peakStart);
-      const x2 = scales.x.getPixelForValue(s.peakEnd);
-      ctx.save();
-      ctx.fillStyle = 'rgba(239,68,68,0.13)';
-      ctx.fillRect(x1, chartArea.top, x2 - x1, chartArea.bottom - chartArea.top);
-      ctx.restore();
-    }
-  };
-
-  function buildChart(season) {
-    if (chartInstance) chartInstance.destroy();
-    // Plot each reading at its end hour (start+1); mirror x=0 = x=24 value
-    const points = [{ x:0, y:load[23] }, ...load.map((y,i) => ({ x: i+1, y }))];
-
-    chartInstance = new Chart(document.getElementById('loadChart').getContext('2d'), {
-      type: 'line',
-      plugins: [peakBandPlugin],
-      data: {
-        datasets: [{
-          label: 'Typical Load (kW)',
-          data: points,
-          borderColor: '#16a34a',
-          backgroundColor: 'rgba(22,163,74,0.07)',
-          borderWidth: 2.5,
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: '#16a34a',
-          fill: true,
-          tension: 0.4,
-        }]
-      },
-      options: {
-        responsive: true,
-        interaction: { mode:'index', intersect:false },
-        plugins: {
-          legend: { display:false },
-          tooltip: {
-            backgroundColor:'#fff', borderColor:'#dde2ef', borderWidth:1,
-            titleColor:'#1a1f2e', bodyColor:'#64748b', padding:12,
-            callbacks: {
-              title: items => {
-                const h = items[0].parsed.x;
-                const s = seasons[currentSeason];
-                const isPeak = h > s.peakStart && h <= s.peakEnd;
-                return `${String(h).padStart(2,'0')}:00  —  ${isPeak ? '🔴 On-Peak (24.0¢/kWh)' : '🔵 Off-Peak (8.0¢/kWh)'}`;
-              },
-              label: ctx => ` ${ctx.parsed.y} kW`
-            }
-          }
-        },
-        scales: {
-          x: {
-            type: 'linear', min: 0, max: 24,
-            grid: { color:'rgba(0,0,0,0.04)' },
-            ticks: { color:'#64748b', font:{size:11}, stepSize:2, callback: v => v <= 24 ? `${String(v).padStart(2,'0')}:00` : '' }
-          },
-          y: {
-            min:0, max:5.5,
-            grid: { color:'rgba(0,0,0,0.05)' },
-            ticks: { color:'#64748b', font:{size:11}, callback: v => v+' kW' }
-          }
-        }
-      }
+  const stickyBar = document.getElementById('stickyBar');
+  const hero = document.querySelector('.hero');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      stickyBar.classList.toggle('visible', !e.isIntersecting);
     });
-    document.getElementById('peak-window-label').textContent = '📌 ' + seasons[season].label;
-  }
+  }, { threshold: 0.1 });
+  observer.observe(hero);
 
-  function setSeason(season) {
-    currentSeason = season;
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-    buildChart(season);
-  }
-  buildChart('winter');
-
-  // Form submit
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Sending…'; btn.disabled = true;
-    try {
-      const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
-      if (res.ok) {
-        btn.textContent = "✓ Got it — I'll be in touch within 1 business day!";
-        btn.style.background = '#16a34a'; btn.style.fontSize = '.85rem'; form.reset();
-      } else {
-        btn.textContent = 'Something went wrong — please email me directly.';
-        btn.style.background = '#dc2626'; btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'Network error — please try again.';
-      btn.style.background = '#dc2626'; btn.disabled = false;
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-q.open').forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
     }
   }
 </script>
